@@ -2028,56 +2028,22 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 .status-tag i { width: 6px; height: 6px; }
 .row-status { margin-left: 8px; }
 
-.department-directory { margin-top: 22px; }
-.department-directory .panel-head { min-height: 70px; }
-.department-directory .side-count { border-radius: 0; }
-.department-directory-head, .department-directory-row {
-  display: grid; grid-template-columns: 38px minmax(150px, .8fr) minmax(240px, 1.45fr) minmax(170px, .9fr) 150px 68px;
-  align-items: center; gap: 12px;
-}
-.department-directory-head { padding: 11px 18px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; }
-.department-directory-list { padding: 0 18px 10px; }
-.department-directory-row { width: 100%; min-height: 68px; padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; color: var(--ink); text-align: left; }
-.department-directory-row:last-child { border-bottom: 0; }
-.department-directory-row:hover { background: #f8fafb; }
-.directory-index { display: grid; width: 30px; height: 30px; place-items: center; background: var(--dept-color); color: #fff; font-size: 11px; font-weight: 900; }
-.directory-department, .directory-focus, .directory-owner { display: flex; min-width: 0; flex-direction: column; }
-.directory-department strong, .directory-focus strong, .directory-owner strong { overflow: hidden; font-size: 13px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
-.directory-department small, .directory-focus small, .directory-owner small { margin-top: 3px; color: var(--muted); font-size: 11px; }
-.directory-focus small, .directory-owner small { order: -1; margin: 0 0 3px; }
-.directory-progress { display: grid; grid-template-columns: minmax(70px, 1fr) 38px; align-items: center; gap: 8px; }
-.directory-progress i { height: 6px; background: #e3eaee; }
-.directory-progress em { display: block; height: 100%; background: var(--dept-color); }
-.directory-progress b { color: var(--dept-color); font-size: 12px; text-align: right; }
-.directory-link { color: var(--dept-color); font-size: 12px; font-weight: 800; text-align: right; }
-
 .leadership-department-hero .report-meta { margin-top: 11px; }
 .department-plan-section, .department-panorama-panel { margin-top: 22px; }
 
-@media (max-width: 1200px) {
-  .department-directory-head, .department-directory-row { grid-template-columns: 34px minmax(140px, .8fr) minmax(220px, 1.35fr) 140px 62px; }
-  .department-directory-head span:nth-child(4), .directory-owner { display: none; }
-}
 @media (max-width: 900px) {
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .hero-summary-line { grid-template-columns: 1fr; gap: 7px; }
-  .department-directory-head { display: none; }
-  .department-directory-row { grid-template-columns: 34px minmax(130px, .8fr) minmax(190px, 1.3fr) 120px 58px; }
 }
 @media (max-width: 700px) {
   .metric-grid { grid-template-columns: 1fr !important; }
   .hero-summary-line p { grid-template-columns: 1fr; gap: 1px; }
-  .department-directory-list { padding-inline: 12px; }
-  .department-directory-row { grid-template-columns: 32px minmax(0, 1fr) 50px; min-height: 86px; gap: 9px; }
-  .directory-focus { grid-column: 2; }
-  .directory-progress { display: none; }
-  .directory-link { grid-column: 3; grid-row: 1 / 3; }
 }
   </style>
   <style id="leadership-directory-redesign">
 /*
  * 首页的稳定职责：给老板提供周度汇报目录。
- * 信息顺序固定为：周次与总进度 → 本周汇报目录 → 重点指标 → 部门职责导航。
+ * 信息顺序固定为：周次与总进度 → 本周汇报目录 → 重点指标。
  */
 .overview-hero.leadership-hero {
   grid-template-columns: 230px minmax(0, 1fr) 230px;
@@ -2378,26 +2344,6 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 .pending-metric .metric-foot b { color: var(--muted); }
 .data-pending-note { color: var(--muted); font-size: 11px; font-weight: 700; }
 
-.department-directory .panel-head h2 { font-size: 20px; }
-.department-directory-head,
-.department-directory-row {
-  grid-template-columns: 40px minmax(150px, .75fr) minmax(360px, 1.75fr) minmax(170px, .85fr) 76px;
-}
-.department-directory-list { padding-bottom: 6px; }
-.department-directory-row { min-height: 76px; }
-.directory-scope {
-  min-width: 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.55;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.directory-department strong,
-.directory-owner strong { overflow: visible; white-space: normal; }
-
 @media (max-width: 1200px) {
   .overview-hero.leadership-hero { grid-template-columns: 205px minmax(0, 1fr) 205px; }
   .leadership-hero .week-identity { padding-inline: 24px; }
@@ -2411,8 +2357,6 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-group-index { width: 42px; height: 42px; }
   .agenda-group-presenter { padding: 15px 14px; }
   .agenda-topic-row { grid-template-columns: 20px minmax(190px, 1fr) 70px 110px; }
-  .department-directory-head,
-  .department-directory-row { grid-template-columns: 36px minmax(135px, .7fr) minmax(320px, 1.7fr) minmax(150px, .8fr) 64px; }
 }
 @media (max-width: 900px) {
   .overview-hero.leadership-hero {
@@ -2441,9 +2385,6 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-topic-row { grid-template-columns: 20px minmax(180px, 1fr) 64px; }
   .agenda-topic-collaboration { display: none; }
   .agenda-topic-progress::before { content: '进度'; display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; font-weight: 800; }
-  .department-directory-head { display: none; }
-  .department-directory-row { grid-template-columns: 34px minmax(135px, .8fr) minmax(260px, 1.5fr) 58px; }
-  .directory-owner { display: none; }
 }
 @media (max-width: 700px) {
   .overview-hero.leadership-hero {
@@ -2475,8 +2416,6 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-group-topics { grid-column: 1; }
   .agenda-topic-row { grid-template-columns: 20px minmax(0, 1fr) 64px; min-height: 82px; }
   .agenda-topic-copy small { white-space: normal; }
-  .department-directory-row { grid-template-columns: 32px minmax(0, 1fr) 52px; min-height: 104px; }
-  .directory-scope { grid-column: 2; }
 }
   </style>
 </head>
@@ -3010,22 +2949,6 @@ function renderOverallPlanOverview() {
   }).join('')}</div></section>`;
 }
 
-function renderDepartmentDirectory() {
-  return `<section class="panel department-directory">
-    <div class="panel-head"><div><h2>部门职责导航</h2><p>用于快速了解各部门负责什么；完整工作计划和工作全景由各部门页维护，避免首页重复更新。</p></div><span class="side-count">8个部门</span></div>
-    <div class="department-directory-head"><span>序号</span><span>责任部门</span><span>职责范围</span><span>建议责任角色</span><span></span></div>
-    <div class="department-directory-list">${Object.entries(departments).map(([id, department], departmentIndex) => {
-      return `<button type="button" class="department-directory-row" data-jump-department="${id}" style="--dept-color:${department.color}">
-        <span class="directory-index">${String(departmentIndex + 1).padStart(2, '0')}</span>
-        <span class="directory-department"><strong>${department.label}</strong><small>${governanceGroups[id].label}</small></span>
-        <span class="directory-scope">${department.purpose}</span>
-        <span class="directory-owner"><small>实际姓名待确认</small><strong>${department.owner}</strong></span>
-        <span class="directory-link">查看 →</span>
-      </button>`;
-    }).join('')}</div>
-  </section>`;
-}
-
 function renderDepartmentPlan(id) {
   const department = departments[id];
   return `<section class="department-plan-section"><div class="section-head"><div><p class="section-label">DEPARTMENT PLAN</p><h2 class="section-title">部门工作计划</h2></div><p class="section-note">工作项结构已保留；责任人、计划时间和完成进度待${department.label}确认</p></div><div class="department-plan-grid">${department.plans.map(plan => `<article class="department-plan-card" style="--dept-color:${department.color}"><div><span>计划时间待确认</span>${statusTag('pending')}</div><h3>${plan[0]}</h3><p>${plan[1]}</p><small>第一负责人待确认</small><div class="progress-cell"><span class="pending-value">进度待确认</span></div></article>`).join('')}</div></section>`;
@@ -3135,8 +3058,7 @@ function renderOverview() {
     <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>老板按顺序查看汇报部门、汇报人和本周重点事项。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? `${weeklyAgenda.length}项汇报` : '尚未录入'}</span><span>名单待确认</span></div></div>
     ${weeklyAgendaDirectory(weeklyAgenda)}
   </section>
-  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
-  ${renderDepartmentDirectory()}`;
+  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>`;
 }
 
 function completedWorkTable(items, includeDepartment = false) {
