@@ -1677,6 +1677,325 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(41,75,255,.
   .weekly-briefing-table { min-width: 780px; }
 }
   </style>
+  <style id="fenfen-visual-structure-map">
+/*
+ * 视觉基准：ALA公司品牌治理看板｜单文件版.htm（芬芬姐版本）
+ * 只映射视觉语言；信息结构继续采用“指标 → 本周汇报 → 部门拆解/计划”的已确认框架。
+ */
+:root {
+  --brand-primary: #12384d;
+  --navy: #12384d;
+  --navy-2: #0e2d3f;
+  --ink: #183043;
+  --muted: #6d7f8a;
+  --line: #dce5ea;
+  --soft: #f4f7f9;
+  --white: #fff;
+  --green: #2e9d63;
+  --yellow: #e8a522;
+  --red: #d84a45;
+  --blue: #2e72c9;
+  --shadow: 0 12px 32px rgba(18,56,77,.075);
+}
+
+html, body { background: var(--soft); color: var(--ink); }
+body { padding: 0; overflow-x: hidden; font-size: 13px; }
+button, select, input { border-radius: 0; }
+button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,.28); outline-offset: 2px; }
+
+.demo-strip {
+  position: relative; inset: auto; z-index: 1; width: auto; height: 30px; padding: 0 20px;
+  background: #fff4d9; border: 0; color: #8a5d00; font-size: 12px; font-weight: 700;
+}
+.app-header {
+  position: static; z-index: auto; width: auto; height: 92px; margin: 0; padding: 0 44px;
+  background: #fff; border: 0; border-bottom: 1px solid var(--line); box-shadow: none; backdrop-filter: none;
+}
+.brand-block { gap: 15px; }
+.app-logo { width: 52px; height: 52px; border-radius: 13px; box-shadow: 0 5px 14px rgba(47,74,255,.18); }
+.brand-copy { min-width: 330px; }
+.brand-block h1 { font-size: 27px; line-height: 1.1; font-weight: 700; letter-spacing: 0; }
+.brand-period { margin-top: 7px; gap: 7px; font-size: 12px; }
+.brand-period strong { color: var(--ink); font-size: 12px; font-weight: 700; }
+.header-actions { position: static; width: auto; height: auto; margin-left: auto; padding: 0; align-items: flex-end; gap: 14px; background: transparent; border: 0; box-shadow: none; }
+.period-selector { width: auto; min-width: 300px; gap: 4px; }
+.period-selector small { display: block; color: var(--muted); font-size: 11px; }
+.period-selector select { height: 44px; padding: 0 34px 0 12px; border: 1px solid var(--line); color: var(--ink); font-size: 12px; font-weight: 700; }
+.outline-button { position: static; width: auto; height: 44px; padding: 0 18px; border: 1px solid var(--navy); background: #fff; color: var(--navy); font-size: 12px; font-weight: 800; box-shadow: none; }
+.outline-button:hover { background: var(--soft); }
+
+.department-tabs {
+  position: sticky; inset: auto; top: 0; z-index: 10; width: auto; height: auto; padding: 0 44px;
+  flex-direction: row; align-items: stretch; gap: 0; overflow-x: auto; overflow-y: hidden;
+  background: #fff; border: 0; border-bottom: 1px solid var(--line); box-shadow: 0 4px 15px rgba(18,56,77,.035); backdrop-filter: none;
+}
+.department-tab {
+  display: block; flex: 0 0 auto; width: auto; min-width: 120px; height: auto; padding: 17px 15px 14px;
+  border: 0; border-bottom: 4px solid transparent; background: transparent; color: var(--muted);
+  font-size: 13px; font-weight: 700; text-align: center;
+}
+.department-tab:hover { color: var(--ink); background: var(--soft); }
+.department-tab.active { color: var(--tab-color); border-bottom-color: var(--tab-color); background: color-mix(in srgb, var(--tab-color) 6%, white); box-shadow: none; }
+
+#dashboardRoot { width: auto; max-width: 1800px; min-height: auto; margin: 0 auto; padding: 26px 44px 60px; background: transparent; border: 0; }
+.section-label { margin-bottom: 5px; color: var(--blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+.section-title { color: var(--ink); font-size: 21px; font-weight: 700; letter-spacing: 0; }
+.section-note, .section-description { color: var(--muted); font-size: 13px; line-height: 1.45; }
+.section-head { margin-bottom: 13px; }
+.section-actions { gap: 14px; }
+.text-route { min-height: 36px; padding: 0; border: 0; background: transparent; color: var(--blue); font-size: 12px; font-weight: 800; }
+
+.panel { overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 0; box-shadow: 0 5px 18px rgba(18,56,77,.035); }
+.panel-head { min-height: 66px; padding: 15px 20px; border-bottom: 1px solid var(--line); }
+.panel-head h2, .weekly-briefing-panel .panel-head h2 { margin: 0; color: var(--ink); font-size: 19px; font-weight: 700; }
+.panel-head p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.side-count { padding: 4px 9px; border-radius: 13px; background: #edf3f8; color: var(--blue); font-size: 11px; font-weight: 800; }
+
+/* 首页汇报头：回到芬芬姐版本的深蓝经营看板语法。 */
+.overview-hero.leadership-hero {
+  display: grid; grid-template-columns: 260px minmax(0, 1fr); grid-template-areas: "score message";
+  min-height: 164px; overflow: hidden; background: var(--navy); color: #fff;
+  border: 0; border-radius: 0; box-shadow: var(--shadow);
+}
+.leadership-hero .overall-score {
+  grid-area: score; align-items: center; justify-content: center; padding: 24px;
+  background: transparent; border: 0; border-right: 1px solid rgba(255,255,255,.17); color: #fff;
+}
+.leadership-hero .overall-score small { color: #b9cbd5; font-size: 12px; font-weight: 500; }
+.leadership-hero .overall-score strong { margin: 6px 0; color: #fff; font-size: 47px; line-height: 1; letter-spacing: -1px; }
+.leadership-hero .overall-score span { padding: 0; border-radius: 0; background: transparent; color: #ffd37b; font-size: 12px; font-weight: 800; }
+.leadership-hero .overall-score .score-method { margin-top: 8px; color: #9fb7c4; font-size: 11px; font-weight: 500; line-height: 1.45; text-align: center; }
+.leadership-hero .hero-message { grid-area: message; display: flex; padding: 25px 34px; justify-content: center; flex-direction: column; }
+.hero-title-group { display: flex; margin-bottom: 13px; align-items: center; gap: 15px; }
+.hero-week-tag {
+  display: inline-grid; min-width: 72px; min-height: 46px; padding: 0 12px; flex: 0 0 auto; place-items: center;
+  border: 1px solid rgba(255,255,255,.68); border-radius: 0; background: #fff; color: var(--navy);
+  font-size: 15px; font-weight: 900; letter-spacing: .2px; box-shadow: none;
+}
+.leadership-hero .hero-title-copy h2 { margin: 0 0 5px; color: #fff; font-size: 27px; line-height: 1.25; font-weight: 800; letter-spacing: 0; }
+.hero-title-copy span { color: #b9cbd5; font-size: 12px; font-weight: 600; }
+.leadership-hero .hero-brief-lines { gap: 5px; }
+.leadership-hero .hero-brief-lines p { grid-template-columns: 72px minmax(0, 1fr); gap: 10px; }
+.leadership-hero .hero-brief-lines strong { color: #8ed0f2; font-size: 12px; font-weight: 800; }
+.leadership-hero .hero-brief-lines span { color: #d2e1e9; font-size: 13px; line-height: 1.5; }
+.report-meta { display: flex; margin-top: 14px; flex-wrap: wrap; gap: 0; }
+.report-meta span { display: inline-flex; min-height: auto; padding: 0 12px; align-items: center; border: 0; border-right: 1px solid currentColor; border-radius: 0; background: transparent; color: var(--muted); font-size: 11px; font-weight: 600; }
+.report-meta span:first-child { padding-left: 0; }
+.report-meta span:last-child { border-right: 0; }
+.leadership-hero .report-meta span { color: #9fb7c4; }
+
+/* 指标卡：白底、部门色上边线，不使用圆角产品卡。 */
+.metric-section { margin-top: 24px; }
+.metric-grid { gap: 12px; }
+.metric-card, .compact-metric-section .metric-card {
+  min-height: 154px; padding: 16px 17px 14px; overflow: hidden;
+  background: #fff; border: 1px solid #e4ebef; border-top: 4px solid var(--metric-color);
+  border-radius: 0; box-shadow: 0 5px 16px rgba(18,56,77,.04);
+}
+.metric-card h3 { color: var(--ink); font-size: 14px; line-height: 1.4; }
+.metric-card .owner { padding: 3px 7px; border-radius: 0; font-size: 10px; }
+.metric-values, .compact-metric-section .metric-values { margin: 11px 0 9px; }
+.metric-values small { color: var(--muted); font-size: 10px; }
+.metric-values strong, .compact-metric-section .metric-values strong { color: var(--ink); font-size: 18px; }
+.achievement-line, .mini-progress, .micro-progress { border-radius: 0; }
+.achievement-line i, .mini-progress i, .micro-progress i { border-radius: 0; }
+.metric-foot { color: var(--muted); font-size: 11px; }
+
+/* 本周汇报位于指标下方，采用原版深蓝表头。 */
+.weekly-briefing-panel { margin-top: 24px; }
+.weekly-briefing-panel .panel-head { min-height: 74px; padding: 15px 20px; }
+.briefing-summary { display: flex; gap: 6px; }
+.briefing-summary span { padding: 5px 8px; border: 1px solid var(--line); border-radius: 0; background: #f5f9fb; color: var(--navy); font-size: 11px; font-weight: 800; }
+.briefing-summary span:last-child { border-color: #efd79f; background: #fff8e7; color: #8a5d00; }
+.weekly-table-scroll { width: 100%; overflow-x: auto; }
+.weekly-briefing-table { width: 100%; min-width: 1020px; border-collapse: collapse; table-layout: fixed; }
+.weekly-briefing-table th {
+  padding: 12px 16px; background: var(--navy); border: 0; color: #fff;
+  font-size: 12px; font-weight: 800; line-height: 1.4; text-align: left;
+}
+.weekly-briefing-table td { padding: 15px 16px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 13px; line-height: 1.5; vertical-align: middle; }
+.weekly-briefing-table tbody tr:hover { background: #f8fafb; }
+.weekly-briefing-table .work-title { display: inline; margin-right: 7px; color: var(--ink); font-size: 14px; font-weight: 800; }
+.weekly-briefing-table .work-output { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.department-jump { color: var(--ink); gap: 9px; }
+.department-jump i { width: 8px; height: 25px; flex: 0 0 8px; border-radius: 0; background: var(--dept-color); box-shadow: none; }
+.department-jump strong { font-size: 13px; }
+.department-jump span { color: var(--dept-color); font-size: 10px; font-weight: 800; }
+.governance-line, .due-line, .detail-entry { color: var(--muted); font-size: 11px; }
+.primary-owner, .weekly-output, .weekly-collaborators { color: var(--ink); font-size: 12px; line-height: 1.5; }
+.branch-switch, .filter-group { padding: 3px; border: 1px solid var(--line); border-radius: 0; background: #eef3f6; }
+.branch-switch button, .filter-group button { min-height: 34px; padding: 7px 11px; border: 0; border-radius: 0; background: transparent; color: var(--muted); font-size: 12px; }
+.branch-switch button.active, .filter-group button.active { background: var(--navy); color: #fff; box-shadow: none; }
+.management-note { grid-template-columns: 164px minmax(0, 1fr); padding: 16px 19px; gap: 18px; background: #fff9e9; border-top: 1px solid #eadfbf; border-left: 4px solid var(--yellow); }
+.management-note > strong { color: #6f5a16; font-size: 12px; }
+.management-note p > b { color: #b08214; font-size: 10px; }
+.management-note p strong { color: var(--ink); font-size: 12px; }
+.management-note p span { color: #6f6753; font-size: 11px; line-height: 1.5; }
+
+/* 首页部门拆解：沿用原版工作包/施工图风格，去掉概念化圆角容器。 */
+.first-briefing-overview { margin-top: 24px; overflow: hidden; border: 1px solid var(--line); border-radius: 0; background: #fff; box-shadow: 0 5px 18px rgba(18,56,77,.035); }
+.first-briefing-head { padding: 20px 22px 17px; background: #fff; border-bottom: 1px solid var(--line); }
+.first-briefing-head h2 { margin: 5px 0; color: var(--ink); font-size: 21px; }
+.first-briefing-head p:last-child { color: var(--muted); font-size: 12px; line-height: 1.55; }
+.first-briefing-stats { gap: 0; border: 1px solid var(--line); }
+.first-briefing-stats span { min-width: 84px; padding: 8px 12px; gap: 5px; border: 0; border-right: 1px solid var(--line); border-radius: 0; background: #f7f9fa; color: var(--muted); font-size: 10px; }
+.first-briefing-stats span:last-child { border-right: 0; }
+.first-briefing-stats b { color: var(--navy); font-size: 18px; }
+.overview-frequency-note { padding: 11px 22px; grid-template-columns: 82px minmax(0, 1fr); border-color: #eadfbf; background: #fff9e9; color: #6f6753; font-size: 11px; }
+.department-overview-list { padding: 0 18px 14px; }
+.department-overview-item { border-bottom: 1px solid var(--line); }
+.department-overview-summary { min-height: 74px; padding: 10px 8px; border-radius: 0; color: var(--ink); }
+.department-overview-summary:hover { background: #f8fafb; }
+.overview-index { width: 32px; height: 32px; border-radius: 0; background: var(--dept-color); color: #fff; font-size: 10px; }
+.overview-department-name strong { font-size: 13px; }
+.overview-department-name small, .overview-week-focus small, .overview-quantity small { color: var(--muted); font-size: 10px; }
+.overview-week-focus strong { color: var(--ink); font-size: 12px; }
+.overview-quantity b { color: var(--ink); font-size: 15px; }
+.overview-progress i { height: 6px; border-radius: 0; background: #e3eaee; }
+.overview-progress em { border-radius: 0; }
+.overview-progress b { font-size: 12px; }
+.department-overview-detail { margin: 0 8px 12px 50px; padding: 16px; border: 1px solid var(--line); border-left: 4px solid var(--dept-color); border-radius: 0; background: #f8fafb; }
+.compact-overview-title span, .compact-overview-title > small { font-size: 10px; }
+.compact-overview-title h3 { color: var(--ink); font-size: 14px; }
+.compact-plan-row { border-color: var(--line); }
+.compact-plan-row time { font-size: 10px; }
+.compact-plan-row strong, .compact-plan-row > b { color: var(--ink); font-size: 12px; }
+.compact-plan-row small { color: var(--muted); font-size: 10px; }
+.compact-package-grid article { padding: 9px 10px; border: 1px solid var(--line); border-radius: 0; background: #fff; }
+.compact-package-grid article > span, .compact-package-grid small { font-size: 10px; }
+.compact-package-grid strong { color: var(--ink); font-size: 12px; }
+.overview-detail-footer > span { color: var(--muted); font-size: 11px; }
+.overview-detail-footer button { min-height: 38px; padding: 0 12px; border: 1px solid var(--dept-color); border-radius: 0; background: #fff; color: var(--dept-color); font-size: 11px; font-weight: 800; }
+
+/* 部门页：原版部门色左边线、白底负责人区。 */
+.department-hero.leadership-department-hero {
+  display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 144px;
+  overflow: hidden; background: #fff; color: var(--ink); border: 0; border-left: 8px solid var(--dept-color);
+  border-radius: 0; box-shadow: var(--shadow);
+}
+.leadership-department-hero .department-intro { padding: 24px 30px; }
+.leadership-department-hero .department-intro h2 { margin: 7px 0 7px; color: var(--ink); font-size: 27px; letter-spacing: 0; }
+.leadership-department-hero .department-intro > p { max-width: 920px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.department-kicker { display: flex; align-items: center; gap: 10px; }
+.department-kicker span { color: var(--dept-color); font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
+.department-kicker b { padding: 3px 7px; border: 1px solid color-mix(in srgb, var(--dept-color) 35%, white); border-radius: 0; background: color-mix(in srgb, var(--dept-color) 7%, white); color: var(--dept-color); font-size: 10px; }
+.leadership-department-hero .department-owner { display: flex; padding: 24px 28px; justify-content: center; align-items: flex-start; flex-direction: column; border-left: 1px solid var(--line); background: color-mix(in srgb, var(--dept-color) 6%, white); }
+.leadership-department-hero .department-owner > small, .leadership-department-hero .department-owner span { color: var(--muted); font-size: 11px; }
+.leadership-department-hero .department-owner > strong { margin: 4px 0 14px; color: var(--ink); font-size: 20px; }
+.leadership-department-hero .department-owner > div { display: flex; width: 100%; padding-top: 11px; justify-content: space-between; align-items: end; border-top: 1px solid var(--line); }
+.leadership-department-hero .department-owner b { color: var(--dept-color); font-size: 27px; }
+.leadership-department-hero .report-meta span { color: var(--muted); }
+
+.department-plan-section { margin-top: 24px; }
+.department-plan-grid { gap: 12px; }
+.department-plan-card { min-height: 176px; padding: 16px 18px; border: 1px solid var(--line); border-top: 4px solid var(--dept-color); border-radius: 0; background: #fff; box-shadow: 0 5px 18px rgba(18,56,77,.035); }
+.department-plan-card > div:first-child > span, .department-plan-card > small { color: var(--muted); font-size: 11px; }
+.department-plan-card h3 { margin: 13px 0 5px; color: var(--ink); font-size: 15px; }
+.department-plan-card p { min-height: 36px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.department-panorama-panel, .portfolio-panel { margin-top: 24px; }
+.department-package-list { padding: 8px 18px 18px; }
+.package-list { gap: 8px; }
+.package-item { overflow: hidden; border: 1px solid #e4eaee; border-radius: 0; background: #fff; }
+.package-toggle { min-height: 56px; padding: 11px 13px; grid-template-columns: 24px minmax(0,1fr) auto auto; gap: 10px; border-radius: 0; }
+.package-chevron { color: var(--muted); font-size: 17px; }
+.package-copy b { color: var(--ink); font-size: 13px; }
+.package-copy span { margin-top: 3px; color: var(--muted); font-size: 11px; white-space: normal; }
+.package-count { padding: 3px 7px; border: 1px solid var(--line); border-radius: 0; color: var(--ink); font-size: 10px; font-weight: 800; }
+.package-progress { min-width: 45px; color: var(--dept-color); font-size: 11px; font-weight: 900; }
+.package-detail { padding: 0 13px 13px 47px; background: #fff; border-top: 0; }
+.task-line { grid-template-columns: minmax(180px,1.5fr) 85px 82px 82px minmax(110px,1fr); padding: 9px 0; border-bottom: 0; border-top: 1px dashed var(--line); color: var(--muted); font-size: 11px; }
+.task-line > b { color: var(--ink); font-size: 12px; }
+
+/* 全景页与全局数据页也服从同一视觉系统。 */
+.work-overview-hero { padding: 25px 30px; border: 0; border-radius: 0; background: var(--navy); color: #fff; box-shadow: var(--shadow); }
+.work-overview-hero h2 { margin: 5px 0 7px; color: #fff; font-size: 27px; }
+.work-overview-hero p { color: #b9cbd5; font-size: 12px; }
+.work-overview-hero .section-label { color: #8ed0f2; }
+.work-overview-stats { gap: 1px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.16); }
+.work-overview-stats article { min-height: 78px; padding: 12px 16px; border: 0; border-radius: 0; background: rgba(255,255,255,.06); }
+.work-overview-stats strong { color: #fff; font-size: 24px; }
+.work-overview-stats span { color: #b9cbd5; font-size: 11px; }
+.portfolio-header, .portfolio-row { grid-template-columns: 240px 170px minmax(0,1fr); }
+.portfolio-header { padding: 0; background: var(--navy); border: 0; color: #fff; font-size: 12px; font-weight: 800; }
+.portfolio-header > div { padding: 12px 18px; }
+.portfolio-row { border-bottom: 1px solid var(--line); }
+.portfolio-cell { padding: 18px; border-right: 1px solid var(--line); }
+.portfolio-index { width: 34px; height: 34px; border-radius: 0; background: var(--dept-color); color: #fff; font-size: 12px; }
+.portfolio-dept h3 { color: var(--ink); font-size: 15px; }
+.portfolio-dept p, .portfolio-owner small { color: var(--muted); font-size: 11px; }
+.portfolio-dept small, .count-pills span { border-radius: 0; background: #f0f4f6; color: var(--ink); font-size: 10px; }
+.portfolio-owner strong { color: var(--ink); font-size: 13px; }
+.ledger-hero, .global-hero { border-radius: 0; background: var(--navy); color: #fff; }
+.ledger-hero .section-label, .global-hero .section-label { color: #8ed0f2; }
+.ledger-hero > div:first-child span, .global-hero > div:first-child span { color: #b9cbd5; }
+.ledger-summary, .global-summary { background: #fff; color: var(--ink); }
+.plan-table th, .ledger-table th, .global-metric-table th, .department-ledger-table th { padding: 12px 14px; background: var(--navy); color: #fff; border: 0; font-size: 12px; font-weight: 800; }
+.plan-table td, .ledger-table td, .global-metric-table td, .department-ledger-table td { padding: 14px; border-color: var(--line); color: var(--ink); font-size: 13px; }
+.work-title { color: var(--ink); font-size: 14px; font-weight: 800; }
+.work-output { color: var(--muted); font-size: 12px; }
+.work-department, .owner, .evidence-tag { border-radius: 0; }
+
+@media (max-width: 1350px) {
+  .app-header { height: auto; min-height: 92px; padding: 12px 24px; flex-wrap: wrap; gap: 12px; }
+  .department-tabs { padding-inline: 24px; }
+  #dashboardRoot { padding-inline: 24px; }
+  .brand-copy { min-width: 260px; }
+  .period-selector { min-width: 260px; }
+  .header-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 1050px) {
+  .management-note { grid-template-columns: 1fr; }
+  .department-plan-grid { grid-template-columns: 1fr 1fr; }
+  .first-briefing-head { grid-template-columns: 1fr; }
+  .department-overview-summary { grid-template-columns: 34px 140px minmax(190px, 1fr) 72px 115px 24px; }
+  .department-overview-detail { grid-template-columns: 1fr; }
+  .work-overview-hero { grid-template-columns: 1fr; }
+  .portfolio-panel { overflow-x: auto; }
+  .portfolio-header, .portfolio-row { min-width: 1000px; }
+}
+@media (max-width: 700px) {
+  .demo-strip { min-height: 30px; height: auto; padding: 7px 12px; line-height: 1.35; text-align: center; }
+  .app-header { position: relative; padding: 14px 18px; }
+  .brand-copy { min-width: 0; }
+  .brand-block h1 { font-size: 19px; }
+  .app-logo { width: 42px; height: 42px; }
+  .header-actions { width: 100%; flex-wrap: nowrap; }
+  .period-selector { width: 0; min-width: 0; flex: 1 1 0; overflow: hidden; }
+  .app-header > .header-actions > .outline-button { display: none; }
+  .department-tabs { top: 0; padding-inline: 16px; }
+  .department-tab { min-width: 96px; padding-inline: 12px; font-size: 12px; }
+  #dashboardRoot { padding: 20px 18px 48px; }
+  .overview-hero.leadership-hero { grid-template-columns: 1fr; grid-template-areas: "score" "message"; }
+  .leadership-hero .overall-score { min-height: 118px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+  .leadership-hero .hero-message { padding: 22px 20px; }
+  .leadership-hero .hero-title-copy h2 { font-size: 23px; }
+  .hero-week-tag { min-width: 62px; min-height: 43px; font-size: 13px; }
+  .leadership-hero .hero-brief-lines p { grid-template-columns: 1fr; gap: 1px; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .section-head, .section-actions { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .panel-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .briefing-summary { flex-wrap: wrap; }
+  .management-note > div { grid-template-columns: 1fr; }
+  .department-hero.leadership-department-hero { grid-template-columns: 1fr; }
+  .leadership-department-hero .department-owner { border-top: 1px solid var(--line); border-left: 0; }
+  .department-plan-grid { grid-template-columns: 1fr; }
+  .first-briefing-head { padding: 18px; }
+  .first-briefing-stats { flex-wrap: wrap; }
+  .department-overview-summary { grid-template-columns: 30px minmax(0, 1fr) 24px; }
+  .overview-week-focus, .overview-progress { grid-column: 2 / 3; }
+  .overview-quantity { display: none; }
+  .overview-chevron { grid-column: 3; grid-row: 1 / 4; }
+  .department-overview-detail { margin-left: 34px; }
+  .compact-package-grid { grid-template-columns: 1fr; }
+  .work-overview-stats { grid-template-columns: 1fr 1fr; }
+}
+@media print {
+  .demo-strip, .department-tabs, .outline-button { display: none !important; }
+  .app-header { position: static; }
+  #dashboardRoot { padding: 18px 20px; }
+}
+  </style>
 </head>
 <body>
   <!--
@@ -2299,8 +2618,8 @@ function renderOverview() {
   const periodTitle = `第${period.reportWeek}周`;
   const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
   return `<section class="overview-hero leadership-hero">
-    <div class="hero-message"><div class="hero-title-group"><b class="hero-week-tag">${periodTitle}</b><div class="hero-title-copy"><h2>品牌治理工作汇报</h2><span>${period.shortRange}</span></div></div><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
+    <div class="hero-message"><div class="hero-title-group"><b class="hero-week-tag">${periodTitle}</b><div class="hero-title-copy"><h2>品牌治理工作汇报</h2><span>${period.shortRange}</span></div></div><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
