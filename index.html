@@ -1680,7 +1680,7 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(41,75,255,.
   <style id="fenfen-visual-structure-map">
 /*
  * 视觉基准：ALA公司品牌治理看板｜单文件版.htm（芬芬姐版本）
- * 只映射视觉语言；信息结构继续采用“指标 → 本周汇报 → 部门拆解/计划”的已确认框架。
+ * 只映射视觉语言；信息结构继续采用“指标 → 汇报目录 → 本周汇报 → 部门拆解/计划”的已确认框架。
  */
 :root {
   --brand-primary: #12384d;
@@ -1801,7 +1801,7 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 .achievement-line i, .mini-progress i, .micro-progress i { border-radius: 0; }
 .metric-foot { color: var(--muted); font-size: 12px; }
 
-/* 首页先回答本周谁来汇报、汇报什么，再展示指标。 */
+/* 首页先看本周指标，再按汇报目录进入本周汇报。 */
 .weekly-briefing-panel { margin-top: 24px; }
 .weekly-briefing-panel .panel-head { min-height: 74px; padding: 15px 20px; }
 .briefing-summary { display: flex; gap: 6px; }
@@ -2042,8 +2042,8 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   </style>
   <style id="leadership-directory-redesign">
 /*
- * 首页的稳定职责：给老板提供周度汇报目录。
- * 信息顺序固定为：周次与总进度 → 本周汇报目录 → 重点指标。
+ * 首页的稳定职责：先给老板看进度和指标，再按目录进入本周汇报。
+ * 信息顺序固定为：周次与总进度 → 重点指标 → 汇报目录 → 本周汇报。
  */
 .overview-hero.leadership-hero {
   grid-template-columns: 230px minmax(0, 1fr) 230px;
@@ -2344,6 +2344,94 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 .pending-metric .metric-foot b { color: var(--muted); }
 .data-pending-note { color: var(--muted); font-size: 11px; font-weight: 700; }
 
+.report-directory-panel,
+.weekly-report-panel { margin-top: 22px; }
+.report-directory-panel .panel-head,
+.weekly-report-panel .panel-head { min-height: 72px; padding: 15px 20px; }
+.report-directory-panel .panel-head h2,
+.weekly-report-panel .panel-head h2 { font-size: 20px; }
+.report-directory { min-width: 0; }
+.report-directory-head,
+.report-directory-row {
+  display: grid;
+  grid-template-columns: 110px minmax(220px, 1fr) 220px 150px;
+  align-items: center;
+}
+.report-directory-head {
+  min-height: 43px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #f4f7f9;
+  color: #617682;
+  font-size: 12px;
+  font-weight: 800;
+}
+.report-directory-head span { height: 100%; padding: 0 18px; display: flex; align-items: center; border-right: 1px solid var(--line); }
+.report-directory-head span:last-child { border-right: 0; }
+.report-directory-row {
+  width: 100%;
+  min-height: 74px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+}
+.report-directory-row:last-child { border-bottom: 0; }
+.report-directory-row:hover { background: color-mix(in srgb, var(--dept-color) 4%, white); }
+.report-directory-row > span { min-width: 0; padding: 14px 18px; }
+.report-directory-order {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  margin-left: 18px;
+  padding: 0 !important;
+  place-items: center;
+  background: var(--dept-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+}
+.report-directory-department,
+.report-directory-presenter,
+.report-directory-count { display: flex; flex-direction: column; justify-content: center; }
+.report-directory-department { position: relative; padding-left: 30px !important; }
+.report-directory-department i { position: absolute; left: 18px; width: 4px; height: 30px; background: var(--dept-color); }
+.report-directory-department strong { font-size: 15px; line-height: 1.35; }
+.report-directory-presenter strong,
+.report-directory-count strong { font-size: 14px; line-height: 1.35; }
+.report-directory-department small,
+.report-directory-presenter small,
+.report-directory-count small { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+.report-directory-department small { color: var(--dept-color); font-weight: 800; }
+
+.weekly-report-scroll { width: 100%; overflow-x: auto; }
+.weekly-report-table { width: 100%; min-width: 920px; border-collapse: collapse; table-layout: fixed; }
+.weekly-report-table th {
+  padding: 12px 16px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: left;
+}
+.weekly-report-table th:nth-child(1) { width: 17%; }
+.weekly-report-table th:nth-child(2) { width: 40%; }
+.weekly-report-table th:nth-child(3) { width: 13%; }
+.weekly-report-table th:nth-child(4) { width: 14%; }
+.weekly-report-table th:nth-child(5) { width: 16%; }
+.weekly-report-table td { padding: 16px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 13px; line-height: 1.5; vertical-align: middle; }
+.weekly-report-table tbody tr { cursor: pointer; }
+.weekly-report-table tbody tr:hover { background: #f8fafb; }
+.weekly-report-table tbody tr:last-child td { border-bottom: 0; }
+.weekly-report-table .work-title { display: block; color: var(--ink); font-size: 14px; font-weight: 800; line-height: 1.45; }
+.weekly-report-table .work-output { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.weekly-report-table .department-jump strong,
+.weekly-report-table .agenda-owner,
+.weekly-report-table .agenda-collaboration { font-size: 13px; }
+
 @media (max-width: 1200px) {
   .overview-hero.leadership-hero { grid-template-columns: 205px minmax(0, 1fr) 205px; }
   .leadership-hero .week-identity { padding-inline: 24px; }
@@ -2357,6 +2445,8 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-group-index { width: 42px; height: 42px; }
   .agenda-group-presenter { padding: 15px 14px; }
   .agenda-topic-row { grid-template-columns: 20px minmax(190px, 1fr) 70px 110px; }
+  .report-directory-head,
+  .report-directory-row { grid-template-columns: 92px minmax(190px, 1fr) 190px 130px; }
 }
 @media (max-width: 900px) {
   .overview-hero.leadership-hero {
@@ -2385,6 +2475,12 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-topic-row { grid-template-columns: 20px minmax(180px, 1fr) 64px; }
   .agenda-topic-collaboration { display: none; }
   .agenda-topic-progress::before { content: '进度'; display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; font-weight: 800; }
+  .report-directory-head,
+  .report-directory-row { grid-template-columns: 82px minmax(170px, 1fr) 170px 110px; }
+  .report-directory-row > span { padding-inline: 14px; }
+  .report-directory-order { margin-left: 14px; }
+  .report-directory-department { padding-left: 26px !important; }
+  .report-directory-department i { left: 14px; }
 }
 @media (max-width: 700px) {
   .overview-hero.leadership-hero {
@@ -2416,6 +2512,15 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .agenda-group-topics { grid-column: 1; }
   .agenda-topic-row { grid-template-columns: 20px minmax(0, 1fr) 64px; min-height: 82px; }
   .agenda-topic-copy small { white-space: normal; }
+  .report-directory-head { display: none; }
+  .report-directory-row { grid-template-columns: 58px minmax(0, 1fr) 82px; min-height: 98px; }
+  .report-directory-order { width: 36px; height: 36px; margin-left: 12px; }
+  .report-directory-department { padding: 14px 12px 7px 24px !important; }
+  .report-directory-department i { left: 12px; height: 26px; }
+  .report-directory-presenter { grid-column: 2; padding: 4px 12px 14px !important; flex-direction: row; gap: 8px; justify-content: flex-start; }
+  .report-directory-presenter small { margin: 0; }
+  .report-directory-count { grid-column: 3; grid-row: 1 / 3; padding-inline: 10px !important; align-items: flex-end; text-align: right; }
+  .weekly-report-table { min-width: 920px; }
 }
   </style>
 </head>
@@ -2881,7 +2986,7 @@ function weeklyBriefingTable(plans, includeDepartment = true) {
 }
 
 function weeklyAgendaDirectory(plans) {
-  if (!plans.length) return `<div class="empty-ledger"><strong>本期汇报安排尚未录入</strong><span>PMO 确认后，将在这里展示汇报顺序、部门、汇报人、事项、进度和协助部门。</span></div>`;
+  if (!plans.length) return `<div class="empty-ledger"><strong>本期汇报目录尚未录入</strong><span>PMO 确认后，将在这里展示汇报顺序、汇报部门与汇报人。</span></div>`;
   const groups = [];
   plans.forEach((plan, index) => {
     let group = groups.find(item => item.departmentId === plan[0]);
@@ -2891,28 +2996,34 @@ function weeklyAgendaDirectory(plans) {
     }
     group.plans.push({ plan, index });
   });
-  return `<div class="agenda-directory"><div class="agenda-directory-head"><span>汇报顺序／部门</span><span>本周汇报人</span><div class="agenda-directory-topic-head"><span>本周汇报事项／明确产出</span><span>进度</span><span>协助部门</span></div></div><div class="agenda-directory-list">${groups.map((group, groupIndex) => {
+  return `<div class="report-directory"><div class="report-directory-head"><span>汇报顺序</span><span>汇报部门</span><span>本周汇报人</span><span>汇报事项</span></div><div class="report-directory-list">${groups.map((group, groupIndex) => {
     const department = departments[group.departmentId];
     const presenter = group.plans.find(item => item.plan[3] && item.plan[3] !== '待确认')?.plan[3] || '待确认';
-    return `<article class="agenda-department-group" style="--dept-color:${department.color}">
-      <button type="button" class="agenda-group-department" data-jump-department="${group.departmentId}" aria-label="进入${department.label}部门页">
-        <span class="agenda-group-index">${String(groupIndex + 1).padStart(2, '0')}</span>
-        <span class="agenda-group-copy"><strong>${department.label}</strong><span>查看部门页 →</span></span>
-      </button>
-      <div class="agenda-group-presenter"><strong>${presenter}</strong><span>本周 ${group.plans.length} 项</span></div>
-      <div class="agenda-group-topics">${group.plans.map(({ plan, index }) => {
-        const [title, output, , , progress, , collaborators] = plan.slice(1, 8);
-        const progressText = Number.isFinite(progress) ? `${progress}%` : '—';
-        const collaborationText = collaborators && collaborators !== '待确认' ? collaborators : '—';
-        return `<button type="button" class="agenda-topic-row" data-plan-index="${index}" data-plan-source="agenda" aria-label="查看${title}详情">
-          <span class="agenda-topic-chevron">›</span>
-          <span class="agenda-topic-copy"><strong>${title}</strong><small>${output}</small></span>
-          <span class="agenda-topic-progress"><b>${progressText}</b></span>
-          <span class="agenda-topic-collaboration"><b>${collaborationText}</b></span>
-        </button>`;
-      }).join('')}</div>
-    </article>`;
+    return `<button type="button" class="report-directory-row" data-jump-department="${group.departmentId}" style="--dept-color:${department.color}" aria-label="进入${department.label}部门页">
+      <span class="report-directory-order">${String(groupIndex + 1).padStart(2, '0')}</span>
+      <span class="report-directory-department"><i></i><strong>${department.label}</strong><small>进入部门页 →</small></span>
+      <span class="report-directory-presenter"><small>汇报人</small><strong>${presenter}</strong></span>
+      <span class="report-directory-count"><strong>${group.plans.length} 项</strong><small>本周汇报</small></span>
+    </button>`;
   }).join('')}</div></div>`;
+}
+
+function weeklyReportDetails(plans) {
+  if (!plans.length) return `<div class="empty-ledger"><strong>本周汇报尚未录入</strong><span>汇报目录确认后，在这里补充事项、明确产出、进度、负责人及协助部门。</span></div>`;
+  return `<div class="weekly-report-scroll"><table class="weekly-report-table"><thead><tr><th>汇报部门</th><th>本周汇报事项／明确产出</th><th>当前进度</th><th>第一负责人</th><th>协助部门</th></tr></thead><tbody>${plans.map((plan, index) => {
+    const department = departments[plan[0]];
+    const [title, output, owner, , progress, , collaborators] = plan.slice(1, 8);
+    const progressMarkup = Number.isFinite(progress)
+      ? `<div class="progress-cell"><span class="mini-progress"><i style="--progress:${progress}%;--progress-color:${progressColor(progress)}"></i></span><b>${progress}%</b></div>`
+      : '<span class="pending-value">待确认</span>';
+    return `<tr data-plan-index="${index}" data-plan-source="agenda">
+      <td><button type="button" class="department-jump" data-jump-department="${plan[0]}" style="--dept-color:${department.color}"><i></i><strong>${department.label}</strong><span>进入部门 →</span></button></td>
+      <td><span class="work-title">${title}</span><span class="work-output">${output}</span></td>
+      <td>${progressMarkup}</td>
+      <td><strong class="agenda-owner">${owner}</strong></td>
+      <td><span class="agenda-collaboration">${collaborators}</span></td>
+    </tr>`;
+  }).join('')}</tbody></table></div>`;
 }
 
 function departmentPackages(id) {
@@ -3054,11 +3165,15 @@ function renderOverview() {
     <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>汇报部门 <b>${weeklyDepartmentIds.length}</b> 个</span><span>汇报事项 <b>${weeklyAgenda.length}</b> 项</span><span>名单状态 <b>待确认</b></span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>—</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">待 PMO 确认权重<br>和汇总口径</small></div>
   </section>
-  <section class="panel weekly-briefing-panel">
-    <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>老板按顺序查看汇报部门、汇报人和本周重点事项。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? `${weeklyAgenda.length}项汇报` : '尚未录入'}</span><span>名单待确认</span></div></div>
+  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
+  <section class="panel report-directory-panel">
+    <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>按汇报顺序列示部门与汇报人；具体汇报内容见下方“本周汇报”。</p></div><div class="briefing-summary"><span>${weeklyDepartmentIds.length ? `${weeklyDepartmentIds.length}个部门` : '尚未录入'}</span><span>名单待确认</span></div></div>
     ${weeklyAgendaDirectory(weeklyAgenda)}
   </section>
-  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>`;
+  <section class="panel weekly-report-panel">
+    <div class="panel-head"><div><h2>本周汇报</h2><p>按上方目录顺序展示本周事项、明确产出、进度、第一负责人及协助部门。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? `${weeklyAgenda.length}项汇报` : '尚未录入'}</span><span>数据待确认</span></div></div>
+    ${weeklyReportDetails(weeklyAgenda)}
+  </section>`;
 }
 
 function completedWorkTable(items, includeDepartment = false) {
