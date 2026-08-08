@@ -1296,16 +1296,23 @@ button, select { border-radius: 8px; }
 }
   </style>
   <style id="leadership-weekly-report">
-.leadership-hero { grid-template-columns: 230px minmax(0, 1fr); min-height: 176px; }
-.leadership-hero .overall-score { align-items: flex-start; padding: 30px 28px; }
-.leadership-hero .overall-score strong { margin: 7px 0 2px; font-size: 50px; }
-.leadership-hero .overall-score .score-method { margin-top: 8px; color: rgba(255,255,255,.68); font-size: 10px; font-weight: 500; line-height: 1.4; }
-.leadership-hero .hero-message { display: flex; padding: 25px 32px; justify-content: center; flex-direction: column; }
+.leadership-hero { grid-template-columns: minmax(0, 1fr) 220px; grid-template-areas: "message score"; min-height: 190px; }
+.leadership-hero .overall-score { grid-area: score; align-items: flex-start; padding: 30px 28px; background: #f2f5ff; border-left: 1px solid #e1e6f6; color: #243db5; }
+.leadership-hero .overall-score small { color: #687287; font-size: 11px; font-weight: 650; }
+.leadership-hero .overall-score strong { margin: 8px 0 5px; color: #2848d8; font-size: 44px; letter-spacing: -1.2px; }
+.leadership-hero .overall-score span { padding: 4px 8px; border-radius: 999px; background: #fff2cf; color: #9a5a00; font-size: 10px; font-weight: 700; }
+.leadership-hero .overall-score .score-method { margin-top: 12px; color: #7a8496; font-size: 10px; font-weight: 500; line-height: 1.45; }
+.leadership-hero .hero-message { display: flex; grid-area: message; padding: 30px 36px; justify-content: center; flex-direction: column; }
+.leadership-hero .hero-message h2 { margin: 10px 0 14px; color: #20242c; font-size: 28px; line-height: 1.25; font-weight: 750; letter-spacing: -.65px; }
+.leadership-hero .hero-brief-lines { gap: 6px; }
+.leadership-hero .hero-brief-lines p { grid-template-columns: 72px minmax(0, 1fr); gap: 10px; }
+.leadership-hero .hero-brief-lines strong { color: #7a8290; font-size: 11px; font-weight: 650; }
+.leadership-hero .hero-brief-lines span { color: #3f4652; font-size: 13px; line-height: 1.5; }
 .hero-kicker, .department-kicker { display: flex; align-items: center; gap: 9px; }
 .hero-kicker span, .department-kicker span { color: var(--brand-primary); font-size: 9px; font-weight: 750; letter-spacing: 1.25px; }
 .hero-kicker b, .department-kicker b { padding: 4px 8px; border-radius: 999px; background: #eef1ff; color: var(--brand-primary); font-size: 9px; }
-.report-meta { display: flex; margin-top: 15px; flex-wrap: wrap; gap: 7px; }
-.report-meta span { display: inline-flex; min-height: 25px; padding: 0 9px; align-items: center; border: 1px solid #e2e5ef; border-radius: 999px; background: #fafbff; color: #626976; font-size: 9px; font-weight: 600; }
+.report-meta { display: flex; margin-top: 16px; flex-wrap: wrap; gap: 7px; }
+.report-meta span { display: inline-flex; min-height: 25px; padding: 0 9px; align-items: center; border: 0; border-radius: 999px; background: #f5f6f8; color: #7a818d; font-size: 9px; font-weight: 550; }
 
 .weekly-briefing-panel { margin-top: 18px; }
 .weekly-briefing-panel .panel-head { min-height: 78px; padding: 16px 20px; }
@@ -1532,7 +1539,12 @@ button, select { border-radius: 8px; }
 }
 @media (max-width: 700px) {
   .leadership-hero, .leadership-department-hero { grid-template-columns: 1fr; }
-  .leadership-hero .overall-score { min-height: 120px; }
+  .leadership-hero { grid-template-areas: "message" "score"; }
+  .leadership-hero .hero-message { padding: 24px 20px; }
+  .leadership-hero .hero-message h2 { font-size: 23px; }
+  .leadership-hero .hero-brief-lines p { grid-template-columns: 1fr; gap: 1px; }
+  .leadership-hero .overall-score { min-height: 112px; padding: 22px 20px; border-top: 1px solid #e1e6f6; border-left: 0; }
+  .leadership-hero .overall-score strong { font-size: 38px; }
   .management-note > div { grid-template-columns: 1fr; }
   .section-actions { align-items: flex-start; flex-direction: column; gap: 5px; }
   .department-plan-grid { grid-template-columns: 1fr; }
@@ -2279,8 +2291,8 @@ function renderOverview() {
   const periodTitle = `第${period.reportWeek}周`;
   const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
   return `<section class="overview-hero leadership-hero">
-    <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
     <div class="hero-message"><div class="hero-kicker"><span>本周汇报概览</span><b>${periodTitle}</b></div><h2>${periodTitle}品牌治理工作汇报</h2><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
