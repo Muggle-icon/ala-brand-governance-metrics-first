@@ -74,6 +74,10 @@ button { cursor: pointer; }
 .hero-message small { color: #b9cbd5; }
 .hero-message h2 { margin: 8px 0 10px; font-size: 25px; line-height: 1.35; }
 .hero-message p { margin: 0; color: #b9cbd5; font-size: 13px; }
+.hero-brief-lines { display: grid; gap: 5px; margin-top: 2px; }
+.hero-brief-lines p { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; }
+.hero-brief-lines strong { color: #303640; font-size: 12px; font-weight: 700; }
+.hero-brief-lines span { color: #6f7580; font-size: 12px; line-height: 1.55; }
 .metric-section { margin-top: 24px; }
 .metric-grid { display: grid; grid-template-columns: repeat(var(--metric-columns, 6), minmax(0, 1fr)); gap: 12px; }
 .metric-card { display: flex; min-width: 0; min-height: 166px; flex-direction: column; padding: 17px 18px 15px; background: #fff; border: 1px solid #e4ebef; border-top: 4px solid var(--metric-color); box-shadow: 0 5px 16px rgba(18,56,77,.04); }
@@ -1647,6 +1651,7 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(41,75,255,.
   .period-selector select { min-width: 0; max-width: 100%; }
   .app-header > .header-actions > .outline-button { display: none; }
   .hero-message p, .leadership-department-hero .department-intro > p { font-size: 12px; }
+  .hero-brief-lines p { grid-template-columns: 1fr; gap: 1px; }
   .department-tab { min-width: 92px; font-size: 12px; }
   .panel-head h2, .weekly-briefing-panel .panel-head h2 { font-size: 18px; }
   .weekly-briefing-table { min-width: 780px; }
@@ -1956,7 +1961,6 @@ const weeklyAgenda = overallPlans.filter(plan => weeklyAgendaIds.includes(plan[0
 const pmWeeklyBrief = {
   status: '需关注',
   focus: '产品旅程信息表达检查',
-  summary: '汇报围绕品牌手册、用户旅程表达、复借提额规则和指标字典，明确当前进度、第一负责人及协作方。',
 };
 
 const completedLedger = [
@@ -2273,9 +2277,10 @@ function renderOverview() {
   const overallProgress = Math.round(allDepartmentPlans.reduce((sum, plan) => sum + plan[4], 0) / allDepartmentPlans.length);
   const attentionCount = weeklyAgenda.filter(plan => plan[6] === 'attention' || plan[6] === 'delayed').length;
   const periodTitle = `第${period.reportWeek}周`;
+  const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
   return `<section class="overview-hero leadership-hero">
     <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
-    <div class="hero-message"><div class="hero-kicker"><span>PMO WEEKLY BRIEF</span><b>${period.weekLabel}</b></div><h2>品牌治理${periodTitle}工作汇报</h2><p>本周共安排${weeklyAgenda.length}个部门汇报，重点关注${pmWeeklyBrief.focus}。${pmWeeklyBrief.summary}</p><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="hero-message"><div class="hero-kicker"><span>本周汇报概览</span><b>${periodTitle}</b></div><h2>${periodTitle}品牌治理工作汇报</h2><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
