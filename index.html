@@ -1311,6 +1311,9 @@ button, select { border-radius: 8px; }
 .hero-kicker, .department-kicker { display: flex; align-items: center; gap: 9px; }
 .hero-kicker span, .department-kicker span { color: var(--brand-primary); font-size: 9px; font-weight: 750; letter-spacing: 1.25px; }
 .hero-kicker b, .department-kicker b { padding: 4px 8px; border-radius: 999px; background: #eef1ff; color: var(--brand-primary); font-size: 9px; }
+.leadership-hero .hero-kicker { gap: 10px; }
+.leadership-hero .hero-kicker b { padding: 6px 12px; background: var(--brand-primary); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .2px; box-shadow: 0 4px 10px rgba(47, 75, 255, .18); }
+.leadership-hero .hero-kicker span { color: #7a8290; font-size: 10px; font-weight: 650; letter-spacing: .8px; }
 .report-meta { display: flex; margin-top: 16px; flex-wrap: wrap; gap: 7px; }
 .report-meta span { display: inline-flex; min-height: 25px; padding: 0 9px; align-items: center; border: 0; border-radius: 999px; background: #f5f6f8; color: #7a818d; font-size: 9px; font-weight: 550; }
 
@@ -2291,7 +2294,7 @@ function renderOverview() {
   const periodTitle = `第${period.reportWeek}周`;
   const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
   return `<section class="overview-hero leadership-hero">
-    <div class="hero-message"><div class="hero-kicker"><span>本周汇报概览</span><b>${periodTitle}</b></div><h2>${periodTitle}品牌治理工作汇报</h2><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="hero-message"><div class="hero-kicker"><b>${periodTitle}</b><span>本周汇报概览</span></div><h2>品牌治理工作汇报</h2><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
