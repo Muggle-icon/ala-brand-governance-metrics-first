@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALA公司品牌治理周报看板</title>
+  <title>ALA公司品牌治理工作汇报</title>
   <link rel="icon" href="data:,">
   <style>
 :root {
@@ -2077,7 +2077,7 @@ function planTable(plans, includeDepartment = true) {
 }
 
 function weeklyBriefingTable(plans, includeDepartment = true) {
-  if (!plans.length) return `<div class="empty-ledger"><strong>本期暂无汇报事项</strong><span>PMO 确认汇报人后，本页将自动生成老板的汇报目录。</span></div>`;
+  if (!plans.length) return `<div class="empty-ledger"><strong>本期暂无汇报事项</strong><span>PMO 确认汇报安排后，本页将生成本周汇报目录。</span></div>`;
   const headers = includeDepartment
     ? '<th>汇报部门</th><th>本周汇报事项</th><th>进度</th><th>第一负责人</th><th>协助部门</th>'
     : '<th>本周计划／汇报事项</th><th>明确产出</th><th>进度</th><th>第一负责人</th><th>协助部门</th>';
@@ -2131,11 +2131,11 @@ function allPackageStats() {
 }
 
 function renderPortfolio() {
-  return `<section class="panel portfolio-panel"><div class="panel-head"><div><p class="section-label">WORK PANORAMA</p><h2>品牌治理工作全景图</h2><p>按芬芬姐的八个实际部门汇总；点击工作包查看事项、负责人和进度</p></div><span class="side-count">8个部门</span></div><div class="portfolio-header"><div>责任部门</div><div>第一负责人</div><div>工作包／具体事项</div></div>${Object.entries(departments).map(([id, department], departmentIndex) => { const packages = departmentPackages(id); const taskCount = packages.reduce((total, pkg) => total + pkg.tasks.length, 0); const average = Math.round(packages.reduce((total, pkg) => total + pkg.progress, 0) / packages.length); return `<div class="portfolio-row" style="--dept-color:${department.color}"><div class="portfolio-cell"><div class="portfolio-dept"><span class="portfolio-index">${String(departmentIndex + 1).padStart(2, '0')}</span><div><h3>${department.label}</h3><p>${department.purpose}</p><small>${governanceGroups[id].label}</small></div></div></div><div class="portfolio-cell portfolio-owner"><strong>${department.owner}</strong><div class="count-pills"><span>${packages.length}个工作包</span><span>${taskCount}项任务</span><span>总体${average}%</span></div></div><div class="portfolio-cell"><div class="package-list">${packages.map((pkg, index) => packageMarkup(pkg, id, index)).join('')}</div></div></div>`; }).join('')}</section>`;
+  return `<section class="panel portfolio-panel"><div class="panel-head"><div><p class="section-label">WORK PANORAMA</p><h2>品牌治理工作全景图</h2><p>按八个责任部门汇总，展示工作包、责任人和推进状态</p></div><span class="side-count">8个部门</span></div><div class="portfolio-header"><div>责任部门</div><div>第一负责人</div><div>工作包／具体事项</div></div>${Object.entries(departments).map(([id, department], departmentIndex) => { const packages = departmentPackages(id); const taskCount = packages.reduce((total, pkg) => total + pkg.tasks.length, 0); const average = Math.round(packages.reduce((total, pkg) => total + pkg.progress, 0) / packages.length); return `<div class="portfolio-row" style="--dept-color:${department.color}"><div class="portfolio-cell"><div class="portfolio-dept"><span class="portfolio-index">${String(departmentIndex + 1).padStart(2, '0')}</span><div><h3>${department.label}</h3><p>${department.purpose}</p><small>${governanceGroups[id].label}</small></div></div></div><div class="portfolio-cell portfolio-owner"><strong>${department.owner}</strong><div class="count-pills"><span>${packages.length}个工作包</span><span>${taskCount}项任务</span><span>总体${average}%</span></div></div><div class="portfolio-cell"><div class="package-list">${packages.map((pkg, index) => packageMarkup(pkg, id, index)).join('')}</div></div></div>`; }).join('')}</section>`;
 }
 
 function renderOverallPlanOverview() {
-  return `<section class="overall-plan-section"><div class="section-head"><div><p class="section-label">OVERALL WORK PLAN</p><h2 class="section-title">各部门工作计划</h2><p class="section-description">第一次向老板介绍整体工作时使用；后续每周汇报时可直接跳过</p></div><span class="frequency-tag">低频保留 · 不删除</span></div><div class="overall-plan-grid">${Object.entries(departments).map(([id, department], departmentIndex) => {
+  return `<section class="overall-plan-section"><div class="section-head"><div><p class="section-label">OVERALL WORK PLAN</p><h2 class="section-title">各部门工作计划</h2><p class="section-description">集中呈现各责任部门的阶段安排、主要产出和完成进度</p></div><span class="frequency-tag">部门计划总览</span></div><div class="overall-plan-grid">${Object.entries(departments).map(([id, department], departmentIndex) => {
     const windows = departmentPlanWindows[id];
     const average = Math.round(department.plans.reduce((sum, plan) => sum + plan[4], 0) / department.plans.length);
     return `<article class="overall-department-plan-card" style="--dept-color:${department.color}"><header><span>${String(departmentIndex + 1).padStart(2, '0')}</span><div><h3>${department.label}</h3><small>${governanceGroups[id].label}</small></div><b>${average}%</b></header><div class="overall-plan-owner">第一负责人 · ${department.owner}</div><div class="overall-plan-timeline">${department.plans.map((plan, index) => `<div><time>${windows[index]}</time><span><strong>${plan[0]}</strong><small>${plan[1]}</small></span><b>${plan[4]}%</b></div>`).join('')}</div></article>`;
@@ -2149,7 +2149,7 @@ function renderFirstBriefingOverview() {
       <div><p class="section-label">DEPARTMENT WORK PANORAMA</p><h2>部门工作全景图</h2><p>汇总八个实际部门的工作范围与计划。点击一个部门，可同时查看工作计划和上下游协作关系。</p></div>
       <div class="first-briefing-stats"><span><b>8</b>实际部门</span><span><b>${plannedWorkCount}</b>重点工作</span></div>
     </div>
-    <div class="overview-frequency-note"><strong>查看方式</strong><span>日常周会停留在上方“本周汇报目录”；首次介绍项目或工作结构变化时，再展开这里。</span></div>
+    <div class="overview-frequency-note"><strong>信息说明</strong><span>上方汇报目录呈现本周重点，下方工作全景用于查看各部门工作范围、计划与协作关系。</span></div>
     <div class="department-overview-list">${Object.entries(departments).map(([id, department], departmentIndex) => {
       const average = Math.round(department.plans.reduce((total, plan) => total + plan[4], 0) / department.plans.length);
       const focus = overallPlans.find(plan => plan[0] === id);
@@ -2189,7 +2189,7 @@ function renderDepartmentPanorama(id) {
 
 function renderWorkOverview() {
   const stats = allPackageStats();
-  return `<section class="work-overview-hero"><div><p class="section-label">LOW-FREQUENCY OVERVIEW</p><h2>品牌治理工作总览</h2><p>第一次向老板介绍整体工作，或部门工作结构变化时查看；不作为每周汇报首页。</p></div><div class="work-overview-stats"><article><strong>8</strong><span>实际部门</span></article><article><strong>${stats.packages}</strong><span>工作包</span></article><article><strong>${stats.tasks}</strong><span>具体任务</span></article><article><strong>${stats.attention}</strong><span>需关注</span></article></div></section>${renderPortfolio()}`;
+  return `<section class="work-overview-hero"><div><p class="section-label">WORK OVERVIEW</p><h2>品牌治理工作总览</h2><p>集中查看八个责任部门的工作范围、任务结构、推进状态和协作关系。</p></div><div class="work-overview-stats"><article><strong>8</strong><span>责任部门</span></article><article><strong>${stats.packages}</strong><span>工作包</span></article><article><strong>${stats.tasks}</strong><span>具体任务</span></article><article><strong>${stats.attention}</strong><span>需关注</span></article></div></section>${renderPortfolio()}`;
 }
 
 function planCards(plans) {
@@ -2275,11 +2275,11 @@ function renderOverview() {
   const periodTitle = `第${period.reportWeek}周`;
   return `<section class="overview-hero leadership-hero">
     <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
-    <div class="hero-message"><div class="hero-kicker"><span>PMO WEEKLY BRIEF</span><b>${period.weekLabel}</b></div><h2>${periodTitle}：${weeklyAgenda.length}个部门进入汇报目录，重点关注${pmWeeklyBrief.focus}。</h2><p>${pmWeeklyBrief.summary}</p><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="hero-message"><div class="hero-kicker"><span>PMO WEEKLY BRIEF</span><b>${period.weekLabel}</b></div><h2>品牌治理${periodTitle}工作汇报</h2><p>本周共安排${weeklyAgenda.length}个部门汇报，重点关注${pmWeeklyBrief.focus}。${pmWeeklyBrief.summary}</p><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
-    <div class="panel-head"><div><p class="section-label">WEEKLY REPORT DIRECTORY</p><h2>${periodTitle}汇报目录</h2><p>仅展示本周实际需要汇报的部门，由 PMO 维护汇报顺序</p></div><div class="briefing-summary"><span>${weeklyAgenda.length}个部门</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="panel-head"><div><p class="section-label">WEEKLY REPORT DIRECTORY</p><h2>${periodTitle}汇报安排</h2><p>按汇报顺序展示本周重点事项、当前进度、第一负责人和协作部门</p></div><div class="briefing-summary"><span>${weeklyAgenda.length}个部门</span><span>${attentionCount}项汇报需关注</span></div></div>
     ${weeklyBriefingTable(weeklyAgenda, true)}
     <div class="management-note"><strong>PMO 本周关注</strong><div>${alerts.map((alert, index) => `<p><b>0${index + 1}</b><span><strong>${alert[0]}</strong>${alert[1].replace('示例：', '')}</span></p>`).join('')}</div></div>
   </section>
