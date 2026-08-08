@@ -1793,19 +1793,19 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   border-radius: 0; box-shadow: 0 5px 16px rgba(18,56,77,.04);
 }
 .metric-card h3 { color: var(--ink); font-size: 14px; line-height: 1.4; }
-.metric-card .owner { padding: 3px 7px; border-radius: 0; font-size: 10px; }
+.metric-card .owner { padding: 3px 7px; border-radius: 0; font-size: 11px; }
 .metric-values, .compact-metric-section .metric-values { margin: 11px 0 9px; }
-.metric-values small { color: var(--muted); font-size: 10px; }
+.metric-values small { color: var(--muted); font-size: 11px; }
 .metric-values strong, .compact-metric-section .metric-values strong { color: var(--ink); font-size: 18px; }
 .achievement-line, .mini-progress, .micro-progress { border-radius: 0; }
 .achievement-line i, .mini-progress i, .micro-progress i { border-radius: 0; }
-.metric-foot { color: var(--muted); font-size: 11px; }
+.metric-foot { color: var(--muted); font-size: 12px; }
 
-/* 本周汇报位于指标下方，采用原版深蓝表头。 */
+/* 首页先回答本周谁来汇报、汇报什么，再展示指标。 */
 .weekly-briefing-panel { margin-top: 24px; }
 .weekly-briefing-panel .panel-head { min-height: 74px; padding: 15px 20px; }
 .briefing-summary { display: flex; gap: 6px; }
-.briefing-summary span { padding: 5px 8px; border: 1px solid var(--line); border-radius: 0; background: #f5f9fb; color: var(--navy); font-size: 11px; font-weight: 800; }
+.briefing-summary span { padding: 5px 8px; border: 1px solid var(--line); border-radius: 0; background: #f5f9fb; color: var(--navy); font-size: 12px; font-weight: 800; }
 .briefing-summary span:last-child { border-color: #efd79f; background: #fff8e7; color: #8a5d00; }
 .weekly-table-scroll { width: 100%; overflow-x: auto; }
 .weekly-briefing-table { width: 100%; min-width: 1020px; border-collapse: collapse; table-layout: fixed; }
@@ -2035,21 +2035,21 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   display: grid; grid-template-columns: 38px minmax(150px, .8fr) minmax(240px, 1.45fr) minmax(170px, .9fr) 150px 68px;
   align-items: center; gap: 12px;
 }
-.department-directory-head { padding: 11px 18px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 800; }
+.department-directory-head { padding: 11px 18px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; }
 .department-directory-list { padding: 0 18px 10px; }
 .department-directory-row { width: 100%; min-height: 68px; padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; color: var(--ink); text-align: left; }
 .department-directory-row:last-child { border-bottom: 0; }
 .department-directory-row:hover { background: #f8fafb; }
-.directory-index { display: grid; width: 30px; height: 30px; place-items: center; background: var(--dept-color); color: #fff; font-size: 10px; font-weight: 900; }
+.directory-index { display: grid; width: 30px; height: 30px; place-items: center; background: var(--dept-color); color: #fff; font-size: 11px; font-weight: 900; }
 .directory-department, .directory-focus, .directory-owner { display: flex; min-width: 0; flex-direction: column; }
 .directory-department strong, .directory-focus strong, .directory-owner strong { overflow: hidden; font-size: 13px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
-.directory-department small, .directory-focus small, .directory-owner small { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.directory-department small, .directory-focus small, .directory-owner small { margin-top: 3px; color: var(--muted); font-size: 11px; }
 .directory-focus small, .directory-owner small { order: -1; margin: 0 0 3px; }
 .directory-progress { display: grid; grid-template-columns: minmax(70px, 1fr) 38px; align-items: center; gap: 8px; }
 .directory-progress i { height: 6px; background: #e3eaee; }
 .directory-progress em { display: block; height: 100%; background: var(--dept-color); }
 .directory-progress b { color: var(--dept-color); font-size: 12px; text-align: right; }
-.directory-link { color: var(--dept-color); font-size: 11px; font-weight: 800; text-align: right; }
+.directory-link { color: var(--dept-color); font-size: 12px; font-weight: 800; text-align: right; }
 
 .leadership-department-hero .report-meta { margin-top: 11px; }
 .department-plan-section, .department-panorama-panel { margin-top: 22px; }
@@ -2077,7 +2077,7 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   <style id="leadership-directory-redesign">
 /*
  * 首页的稳定职责：给老板提供周度汇报目录。
- * 信息顺序固定为：周次与总进度 → 重点指标 → 本周汇报目录 → 部门职责导航。
+ * 信息顺序固定为：周次与总进度 → 本周汇报目录 → 重点指标 → 部门职责导航。
  */
 .overview-hero.leadership-hero {
   grid-template-columns: 230px minmax(0, 1fr) 230px;
@@ -2169,28 +2169,60 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 
 .weekly-briefing-panel .panel-head h2 { font-size: 20px; }
 .weekly-briefing-panel .panel-head p { font-size: 12px; }
-.agenda-directory-list {
+.agenda-directory { min-width: 0; }
+.agenda-directory-head {
   display: grid;
-  gap: 14px;
-  padding: 16px 18px 20px;
-  background: #f7f9fa;
+  grid-template-columns: 230px 170px minmax(0, 1fr);
+  min-height: 43px;
+  border-bottom: 1px solid var(--line);
+  background: #f4f7f9;
+  color: #617682;
+  font-size: 12px;
+  font-weight: 800;
 }
+.agenda-directory-head > span {
+  display: flex;
+  padding: 0 18px;
+  align-items: center;
+  border-right: 1px solid var(--line);
+}
+.agenda-directory-topic-head {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 84px 130px;
+  min-width: 0;
+}
+.agenda-directory-topic-head span {
+  display: flex;
+  padding: 0 14px;
+  align-items: center;
+  border-right: 1px solid var(--line);
+}
+.agenda-directory-topic-head span:last-child { border-right: 0; }
+.agenda-directory-list { background: #fff; }
 .agenda-department-group {
   display: grid;
-  grid-template-columns: 252px 190px minmax(0, 1fr);
+  grid-template-columns: 230px 170px minmax(0, 1fr);
   min-width: 0;
-  border: 1px solid #dce4e9;
+  border-bottom: 1px solid var(--line);
   background: #fff;
 }
+.agenda-department-group:last-child { border-bottom: 0; }
 .agenda-group-department {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
-  gap: 15px;
+  gap: 14px;
   min-width: 0;
-  padding: 21px 19px;
-  align-content: start;
-  border-right: 1px solid #dce4e9;
+  padding: 17px 18px;
+  align-content: center;
+  align-items: center;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
+.agenda-group-department:hover { background: color-mix(in srgb, var(--dept-color) 5%, white); }
 .agenda-group-index {
   display: grid;
   width: 48px;
@@ -2198,138 +2230,124 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   place-items: center;
   background: var(--dept-color);
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 900;
   letter-spacing: .4px;
 }
-.agenda-department-button {
-  min-width: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-.agenda-department-button strong {
+.agenda-group-copy { min-width: 0; }
+.agenda-group-copy strong {
   display: block;
-  color: var(--ink);
-  font-size: 17px;
-  line-height: 1.25;
-}
-.agenda-department-button span {
-  display: -webkit-box;
-  margin-top: 8px;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.55;
-}
-.agenda-department-button:hover strong { color: var(--dept-color); }
-.agenda-group-presenter {
-  display: flex;
-  min-width: 0;
-  padding: 21px 18px;
-  flex-direction: column;
-  align-items: flex-start;
-  border-right: 1px solid #dce4e9;
-}
-.agenda-group-presenter small,
-.agenda-topic-meta small {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .45px;
-}
-.agenda-group-presenter strong {
-  margin-top: 7px;
   color: var(--ink);
   font-size: 16px;
   line-height: 1.3;
 }
-.agenda-group-presenter span {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.45;
+.agenda-group-copy span {
+  display: block;
+  margin-top: 7px;
+  color: var(--dept-color);
+  font-size: 12px;
+  font-weight: 800;
 }
-.agenda-group-presenter b {
+.agenda-group-presenter {
+  display: flex;
+  min-width: 0;
+  padding: 17px 18px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  border-right: 1px solid var(--line);
+}
+.agenda-group-presenter strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.agenda-group-presenter span {
   display: inline-flex;
   min-height: 27px;
-  margin-top: 15px;
+  margin-top: 9px;
   padding: 0 9px;
   align-items: center;
   background: #edf3f6;
   color: var(--navy);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 800;
 }
 .agenda-group-topics {
   display: grid;
-  gap: 10px;
   min-width: 0;
-  padding: 14px;
-  align-content: start;
+  align-content: center;
 }
 .agenda-topic-row {
   display: grid;
-  grid-template-columns: 20px minmax(220px, 1fr) 70px 88px 112px;
-  gap: 12px;
+  grid-template-columns: 22px minmax(240px, 1fr) 84px 130px;
+  gap: 0;
   min-width: 0;
-  min-height: 88px;
-  padding: 13px 15px;
-  align-items: center;
-  border: 1px solid #dce4e9;
+  min-height: 82px;
+  padding: 0;
+  align-items: stretch;
+  border: 0;
+  border-bottom: 1px solid var(--line);
   background: #fff;
   color: inherit;
   text-align: left;
   cursor: pointer;
 }
-.agenda-topic-row:hover {
-  border-color: var(--dept-color);
-  box-shadow: inset 3px 0 0 var(--dept-color);
-}
+.agenda-topic-row:last-child { border-bottom: 0; }
+.agenda-topic-row:hover { background: color-mix(in srgb, var(--dept-color) 4%, white); }
 .agenda-topic-chevron {
+  display: flex;
+  padding-left: 12px;
+  align-items: center;
   color: #78909c;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
 }
-.agenda-topic-copy { min-width: 0; }
+.agenda-topic-copy {
+  display: flex;
+  min-width: 0;
+  padding: 14px 12px;
+  justify-content: center;
+  flex-direction: column;
+}
 .agenda-topic-copy strong {
   display: block;
   color: var(--ink);
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 .agenda-topic-copy small {
   display: block;
   margin-top: 5px;
   overflow: hidden;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.45;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.agenda-topic-meta {
+.agenda-topic-progress,
+.agenda-topic-collaboration {
   display: flex;
   min-width: 0;
+  padding: 12px 14px;
+  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  border-left: 1px solid var(--line);
 }
-.agenda-topic-meta b {
-  display: block;
-  max-width: 100%;
-  margin-top: 5px;
+.agenda-topic-progress b {
+  color: var(--dept-color);
+  font-size: 16px;
+}
+.agenda-topic-collaboration b {
   overflow: hidden;
   color: var(--ink);
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.45;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
-.agenda-topic-progress b { color: var(--dept-color); font-size: 15px; }
-.agenda-topic-status .status-tag { white-space: nowrap; }
+.agenda-topic-progress::before,
+.agenda-topic-collaboration::before { display: none; }
 .weekly-agenda-table { min-width: 1120px; }
 .weekly-agenda-table th:nth-child(1) { width: 6%; }
 .weekly-agenda-table th:nth-child(2) { width: 13%; }
@@ -2386,11 +2404,13 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .week-identity strong { font-size: 36px; }
   .leadership-hero .hero-message { padding-inline: 27px; }
   .leadership-hero .hero-message h2 { font-size: 24px; }
-  .agenda-department-group { grid-template-columns: 220px 170px minmax(0, 1fr); }
-  .agenda-group-department { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; padding: 18px 15px; }
+  .agenda-directory-head,
+  .agenda-department-group { grid-template-columns: 205px 150px minmax(0, 1fr); }
+  .agenda-directory-topic-head { grid-template-columns: minmax(190px, 1fr) 70px 110px; }
+  .agenda-group-department { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; padding: 15px; }
   .agenda-group-index { width: 42px; height: 42px; }
-  .agenda-group-presenter { padding: 18px 14px; }
-  .agenda-topic-row { grid-template-columns: 18px minmax(190px, 1fr) 60px 80px 94px; gap: 9px; padding-inline: 12px; }
+  .agenda-group-presenter { padding: 15px 14px; }
+  .agenda-topic-row { grid-template-columns: 20px minmax(190px, 1fr) 70px 110px; }
   .department-directory-head,
   .department-directory-row { grid-template-columns: 36px minmax(135px, .7fr) minmax(320px, 1.7fr) minmax(150px, .8fr) 64px; }
 }
@@ -2401,27 +2421,26 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   }
   .leadership-hero .overall-score { min-height: 150px; border-left: 0; }
   .leadership-hero .hero-message { border-top: 1px solid rgba(255,255,255,.13); }
-  .agenda-department-group { grid-template-columns: 220px minmax(0, 1fr); }
-  .agenda-group-department { grid-row: 1 / 3; border-right: 1px solid #dce4e9; }
+  .agenda-directory-head { display: none; }
+  .agenda-department-group { grid-template-columns: 190px minmax(0, 1fr); }
+  .agenda-group-department { grid-row: 1 / 3; border-right: 1px solid var(--line); }
   .agenda-group-presenter {
-    display: grid;
-    grid-template-columns: minmax(110px, .7fr) minmax(150px, 1fr) auto;
-    gap: 8px 14px;
-    padding: 14px 16px;
+    grid-column: 2;
+    display: flex;
+    gap: 10px;
+    padding: 11px 14px;
+    justify-content: flex-start;
+    flex-direction: row;
     align-items: center;
     border-right: 0;
-    border-bottom: 1px solid #dce4e9;
+    border-bottom: 1px solid var(--line);
   }
-  .agenda-group-presenter strong,
-  .agenda-group-presenter span,
-  .agenda-group-presenter b { margin-top: 0; }
-  .agenda-group-presenter small { grid-column: 1; grid-row: 1; }
-  .agenda-group-presenter strong { grid-column: 2; grid-row: 1; }
-  .agenda-group-presenter span { grid-column: 1 / 3; grid-row: 2; }
-  .agenda-group-presenter b { grid-column: 3; grid-row: 1 / 3; }
+  .agenda-group-presenter::before { content: '本周汇报人'; color: var(--muted); font-size: 12px; font-weight: 800; }
+  .agenda-group-presenter span { min-height: 25px; margin: 0 0 0 auto; }
   .agenda-group-topics { grid-column: 2; }
-  .agenda-topic-row { grid-template-columns: 18px minmax(180px, 1fr) 58px 78px; }
+  .agenda-topic-row { grid-template-columns: 20px minmax(180px, 1fr) 64px; }
   .agenda-topic-collaboration { display: none; }
+  .agenda-topic-progress::before { content: '进度'; display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; font-weight: 800; }
   .department-directory-head { display: none; }
   .department-directory-row { grid-template-columns: 34px minmax(135px, .8fr) minmax(260px, 1.5fr) 58px; }
   .directory-owner { display: none; }
@@ -2441,27 +2460,21 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .leadership-hero .hero-message h2 { font-size: 21px; }
   .hero-directory-facts span { padding-inline: 10px; font-size: 11px; }
   .compact-metric-section .section-note { text-align: left; }
-  .agenda-directory-list { padding: 10px; }
   .agenda-department-group { grid-template-columns: 1fr; }
   .agenda-group-department {
     grid-row: auto;
     grid-template-columns: 42px minmax(0, 1fr);
     padding: 16px;
     border-right: 0;
-    border-bottom: 1px solid #dce4e9;
+    border-bottom: 1px solid var(--line);
   }
   .agenda-group-presenter {
     grid-column: 1;
-    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 11px 16px;
   }
-  .agenda-group-presenter small { grid-column: 1; grid-row: 1; }
-  .agenda-group-presenter strong { grid-column: 1; grid-row: 2; }
-  .agenda-group-presenter span { grid-column: 1 / 3; grid-row: 3; }
-  .agenda-group-presenter b { grid-column: 2; grid-row: 1 / 3; }
-  .agenda-group-topics { grid-column: 1; padding: 10px; }
-  .agenda-topic-row { grid-template-columns: 16px minmax(0, 1fr) 58px; min-height: 82px; padding: 12px 10px; }
+  .agenda-group-topics { grid-column: 1; }
+  .agenda-topic-row { grid-template-columns: 20px minmax(0, 1fr) 64px; min-height: 82px; }
   .agenda-topic-copy small { white-space: normal; }
-  .agenda-topic-status { display: none; }
   .department-directory-row { grid-template-columns: 32px minmax(0, 1fr) 52px; min-height: 104px; }
   .directory-scope { grid-column: 2; }
 }
@@ -2939,29 +2952,28 @@ function weeklyAgendaDirectory(plans) {
     }
     group.plans.push({ plan, index });
   });
-  return `<div class="agenda-directory-list">${groups.map((group, groupIndex) => {
+  return `<div class="agenda-directory"><div class="agenda-directory-head"><span>汇报顺序／部门</span><span>本周汇报人</span><div class="agenda-directory-topic-head"><span>本周汇报事项／明确产出</span><span>进度</span><span>协助部门</span></div></div><div class="agenda-directory-list">${groups.map((group, groupIndex) => {
     const department = departments[group.departmentId];
     const presenter = group.plans.find(item => item.plan[3] && item.plan[3] !== '待确认')?.plan[3] || '待确认';
     return `<article class="agenda-department-group" style="--dept-color:${department.color}">
-      <div class="agenda-group-department">
+      <button type="button" class="agenda-group-department" data-jump-department="${group.departmentId}" aria-label="进入${department.label}部门页">
         <span class="agenda-group-index">${String(groupIndex + 1).padStart(2, '0')}</span>
-        <button type="button" class="agenda-department-button" data-jump-department="${group.departmentId}" aria-label="进入${department.label}部门页"><strong>${department.label}</strong><span>${department.purpose}</span></button>
-      </div>
-      <div class="agenda-group-presenter"><small>本周汇报人</small><strong>${presenter}</strong><span>建议角色：${department.owner}</span><b>本周 ${group.plans.length} 项</b></div>
+        <span class="agenda-group-copy"><strong>${department.label}</strong><span>查看部门页 →</span></span>
+      </button>
+      <div class="agenda-group-presenter"><strong>${presenter}</strong><span>本周 ${group.plans.length} 项</span></div>
       <div class="agenda-group-topics">${group.plans.map(({ plan, index }) => {
-        const [title, output, , , progress, status, collaborators] = plan.slice(1, 8);
+        const [title, output, , , progress, , collaborators] = plan.slice(1, 8);
         const progressText = Number.isFinite(progress) ? `${progress}%` : '—';
         const collaborationText = collaborators && collaborators !== '待确认' ? collaborators : '—';
         return `<button type="button" class="agenda-topic-row" data-plan-index="${index}" data-plan-source="agenda" aria-label="查看${title}详情">
           <span class="agenda-topic-chevron">›</span>
           <span class="agenda-topic-copy"><strong>${title}</strong><small>${output}</small></span>
-          <span class="agenda-topic-meta agenda-topic-progress"><small>当前进度</small><b>${progressText}</b></span>
-          <span class="agenda-topic-status">${statusTag(status)}</span>
-          <span class="agenda-topic-meta agenda-topic-collaboration"><small>协助部门</small><b>${collaborationText}</b></span>
+          <span class="agenda-topic-progress"><b>${progressText}</b></span>
+          <span class="agenda-topic-collaboration"><b>${collaborationText}</b></span>
         </button>`;
       }).join('')}</div>
     </article>`;
-  }).join('')}</div>`;
+  }).join('')}</div></div>`;
 }
 
 function departmentPackages(id) {
@@ -3111,19 +3123,19 @@ function renderOverview() {
   const weeklyDepartmentIds = [...new Set(weeklyAgenda.map(plan => plan[0]))];
   const weeklyDepartmentNames = weeklyDepartmentIds.map(id => departments[id].label).join('、');
   const agendaSummary = weeklyAgenda.length
-    ? `当前结构草案包含${weeklyDepartmentNames}；汇报名单、顺序和责任人待 PMO 确认。`
+    ? `本周汇报目录包含${weeklyDepartmentNames}；汇报人、进度和协助部门待确认。`
     : '本周汇报名单尚未录入，确认后将在下方生成汇报目录。';
   const executiveMetrics = [overallMetrics[0], overallMetrics[1], overallMetrics[3], overallMetrics[5]];
   return `<section class="overview-hero leadership-hero">
     <div class="week-identity"><small>汇报周次</small><strong>${periodTitle}</strong><span>${period.shortRange}</span></div>
-    <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>草案部门 <b>${weeklyDepartmentIds.length}</b> 个</span><span>草案事项 <b>${weeklyAgenda.length}</b> 项</span><span>数据状态 <b>待确认</b></span></div></div>
+    <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>汇报部门 <b>${weeklyDepartmentIds.length}</b> 个</span><span>汇报事项 <b>${weeklyAgenda.length}</b> 项</span><span>名单状态 <b>待确认</b></span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>—</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">待 PMO 确认权重<br>和汇总口径</small></div>
   </section>
-  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
-    <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>按顺序说明谁来汇报、汇报什么、当前进度和协助部门。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? '结构草案' : '尚未录入'}</span><span>待 PMO 确认</span></div></div>
+    <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>老板按顺序查看汇报部门、汇报人和本周重点事项。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? `${weeklyAgenda.length}项汇报` : '尚未录入'}</span><span>名单待确认</span></div></div>
     ${weeklyAgendaDirectory(weeklyAgenda)}
   </section>
+  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
   ${renderDepartmentDirectory()}`;
 }
 
