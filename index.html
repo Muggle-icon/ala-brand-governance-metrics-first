@@ -1311,9 +1311,11 @@ button, select { border-radius: 8px; }
 .hero-kicker, .department-kicker { display: flex; align-items: center; gap: 9px; }
 .hero-kicker span, .department-kicker span { color: var(--brand-primary); font-size: 9px; font-weight: 750; letter-spacing: 1.25px; }
 .hero-kicker b, .department-kicker b { padding: 4px 8px; border-radius: 999px; background: #eef1ff; color: var(--brand-primary); font-size: 9px; }
-.leadership-hero .hero-kicker { gap: 10px; }
-.leadership-hero .hero-kicker b { padding: 6px 12px; background: var(--brand-primary); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .2px; box-shadow: 0 4px 10px rgba(47, 75, 255, .18); }
-.leadership-hero .hero-kicker span { color: #7a8290; font-size: 10px; font-weight: 650; letter-spacing: .8px; }
+.hero-title-group { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+.hero-week-tag { display: inline-grid; min-width: 66px; min-height: 50px; padding: 0 13px; flex: 0 0 auto; place-items: center; border-radius: 11px; background: var(--brand-primary); color: #fff; font-size: 14px; font-weight: 800; letter-spacing: .2px; box-shadow: 0 5px 13px rgba(47, 75, 255, .2); }
+.hero-title-copy { min-width: 0; }
+.leadership-hero .hero-title-copy h2 { margin: 0 0 5px; }
+.hero-title-copy span { display: block; color: #7a8290; font-size: 11px; font-weight: 600; }
 .report-meta { display: flex; margin-top: 16px; flex-wrap: wrap; gap: 7px; }
 .report-meta span { display: inline-flex; min-height: 25px; padding: 0 9px; align-items: center; border: 0; border-radius: 999px; background: #f5f6f8; color: #7a818d; font-size: 9px; font-weight: 550; }
 
@@ -1545,6 +1547,9 @@ button, select { border-radius: 8px; }
   .leadership-hero { grid-template-areas: "message" "score"; }
   .leadership-hero .hero-message { padding: 24px 20px; }
   .leadership-hero .hero-message h2 { font-size: 23px; }
+  .hero-title-group { gap: 11px; margin-bottom: 15px; }
+  .hero-week-tag { min-width: 58px; min-height: 46px; padding-inline: 10px; font-size: 13px; }
+  .hero-title-copy span { font-size: 10px; }
   .leadership-hero .hero-brief-lines p { grid-template-columns: 1fr; gap: 1px; }
   .leadership-hero .overall-score { min-height: 112px; padding: 22px 20px; border-top: 1px solid #e1e6f6; border-left: 0; }
   .leadership-hero .overall-score strong { font-size: 38px; }
@@ -2294,7 +2299,7 @@ function renderOverview() {
   const periodTitle = `第${period.reportWeek}周`;
   const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
   return `<section class="overview-hero leadership-hero">
-    <div class="hero-message"><div class="hero-kicker"><b>${periodTitle}</b><span>本周汇报概览</span></div><h2>品牌治理工作汇报</h2><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>${period.shortRange}</span><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
+    <div class="hero-message"><div class="hero-title-group"><b class="hero-week-tag">${periodTitle}</b><div class="hero-title-copy"><h2>品牌治理工作汇报</h2><span>${period.shortRange}</span></div></div><div class="hero-brief-lines"><p><strong>汇报部门</strong><span>${weeklyDepartmentNames}</span></p><p><strong>本周重点</strong><span>${pmWeeklyBrief.focus}</span></p></div><div class="report-meta"><span>页面更新 · 2026年8月7日</span><span>${weeklyAgenda.length}个部门汇报</span><span>${attentionCount}项汇报需关注</span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>${overallProgress}%</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">八部门工作计划<br>综合完成进度</small></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY PRIORITY METRICS</p><h2 class="section-title">本周重点指标</h2></div><div class="section-actions"><p class="section-note">由 PMO 按周选择，仅展示目标、当前值和较上周变化</p><button type="button" class="text-route" data-route-tab="global">查看全部治理数据 →</button></div></div><div class="metric-grid" style="--metric-columns:${overallMetrics.length}">${metricCards(overallMetrics)}</div></section>
