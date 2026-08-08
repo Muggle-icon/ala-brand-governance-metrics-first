@@ -2169,6 +2169,167 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
 
 .weekly-briefing-panel .panel-head h2 { font-size: 20px; }
 .weekly-briefing-panel .panel-head p { font-size: 12px; }
+.agenda-directory-list {
+  display: grid;
+  gap: 14px;
+  padding: 16px 18px 20px;
+  background: #f7f9fa;
+}
+.agenda-department-group {
+  display: grid;
+  grid-template-columns: 252px 190px minmax(0, 1fr);
+  min-width: 0;
+  border: 1px solid #dce4e9;
+  background: #fff;
+}
+.agenda-group-department {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 15px;
+  min-width: 0;
+  padding: 21px 19px;
+  align-content: start;
+  border-right: 1px solid #dce4e9;
+}
+.agenda-group-index {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  background: var(--dept-color);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .4px;
+}
+.agenda-department-button {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.agenda-department-button strong {
+  display: block;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.25;
+}
+.agenda-department-button span {
+  display: -webkit-box;
+  margin-top: 8px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.agenda-department-button:hover strong { color: var(--dept-color); }
+.agenda-group-presenter {
+  display: flex;
+  min-width: 0;
+  padding: 21px 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-right: 1px solid #dce4e9;
+}
+.agenda-group-presenter small,
+.agenda-topic-meta small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .45px;
+}
+.agenda-group-presenter strong {
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.3;
+}
+.agenda-group-presenter span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+.agenda-group-presenter b {
+  display: inline-flex;
+  min-height: 27px;
+  margin-top: 15px;
+  padding: 0 9px;
+  align-items: center;
+  background: #edf3f6;
+  color: var(--navy);
+  font-size: 11px;
+}
+.agenda-group-topics {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  align-content: start;
+}
+.agenda-topic-row {
+  display: grid;
+  grid-template-columns: 20px minmax(220px, 1fr) 70px 88px 112px;
+  gap: 12px;
+  min-width: 0;
+  min-height: 88px;
+  padding: 13px 15px;
+  align-items: center;
+  border: 1px solid #dce4e9;
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.agenda-topic-row:hover {
+  border-color: var(--dept-color);
+  box-shadow: inset 3px 0 0 var(--dept-color);
+}
+.agenda-topic-chevron {
+  color: #78909c;
+  font-size: 24px;
+  line-height: 1;
+}
+.agenda-topic-copy { min-width: 0; }
+.agenda-topic-copy strong {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.35;
+}
+.agenda-topic-copy small {
+  display: block;
+  margin-top: 5px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.agenda-topic-meta {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.agenda-topic-meta b {
+  display: block;
+  max-width: 100%;
+  margin-top: 5px;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.agenda-topic-progress b { color: var(--dept-color); font-size: 15px; }
+.agenda-topic-status .status-tag { white-space: nowrap; }
 .weekly-agenda-table { min-width: 1120px; }
 .weekly-agenda-table th:nth-child(1) { width: 6%; }
 .weekly-agenda-table th:nth-child(2) { width: 13%; }
@@ -2225,6 +2386,11 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .week-identity strong { font-size: 36px; }
   .leadership-hero .hero-message { padding-inline: 27px; }
   .leadership-hero .hero-message h2 { font-size: 24px; }
+  .agenda-department-group { grid-template-columns: 220px 170px minmax(0, 1fr); }
+  .agenda-group-department { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; padding: 18px 15px; }
+  .agenda-group-index { width: 42px; height: 42px; }
+  .agenda-group-presenter { padding: 18px 14px; }
+  .agenda-topic-row { grid-template-columns: 18px minmax(190px, 1fr) 60px 80px 94px; gap: 9px; padding-inline: 12px; }
   .department-directory-head,
   .department-directory-row { grid-template-columns: 36px minmax(135px, .7fr) minmax(320px, 1.7fr) minmax(150px, .8fr) 64px; }
 }
@@ -2235,6 +2401,27 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   }
   .leadership-hero .overall-score { min-height: 150px; border-left: 0; }
   .leadership-hero .hero-message { border-top: 1px solid rgba(255,255,255,.13); }
+  .agenda-department-group { grid-template-columns: 220px minmax(0, 1fr); }
+  .agenda-group-department { grid-row: 1 / 3; border-right: 1px solid #dce4e9; }
+  .agenda-group-presenter {
+    display: grid;
+    grid-template-columns: minmax(110px, .7fr) minmax(150px, 1fr) auto;
+    gap: 8px 14px;
+    padding: 14px 16px;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid #dce4e9;
+  }
+  .agenda-group-presenter strong,
+  .agenda-group-presenter span,
+  .agenda-group-presenter b { margin-top: 0; }
+  .agenda-group-presenter small { grid-column: 1; grid-row: 1; }
+  .agenda-group-presenter strong { grid-column: 2; grid-row: 1; }
+  .agenda-group-presenter span { grid-column: 1 / 3; grid-row: 2; }
+  .agenda-group-presenter b { grid-column: 3; grid-row: 1 / 3; }
+  .agenda-group-topics { grid-column: 2; }
+  .agenda-topic-row { grid-template-columns: 18px minmax(180px, 1fr) 58px 78px; }
+  .agenda-topic-collaboration { display: none; }
   .department-directory-head { display: none; }
   .department-directory-row { grid-template-columns: 34px minmax(135px, .8fr) minmax(260px, 1.5fr) 58px; }
   .directory-owner { display: none; }
@@ -2254,6 +2441,27 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .leadership-hero .hero-message h2 { font-size: 21px; }
   .hero-directory-facts span { padding-inline: 10px; font-size: 11px; }
   .compact-metric-section .section-note { text-align: left; }
+  .agenda-directory-list { padding: 10px; }
+  .agenda-department-group { grid-template-columns: 1fr; }
+  .agenda-group-department {
+    grid-row: auto;
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 1px solid #dce4e9;
+  }
+  .agenda-group-presenter {
+    grid-column: 1;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .agenda-group-presenter small { grid-column: 1; grid-row: 1; }
+  .agenda-group-presenter strong { grid-column: 1; grid-row: 2; }
+  .agenda-group-presenter span { grid-column: 1 / 3; grid-row: 3; }
+  .agenda-group-presenter b { grid-column: 2; grid-row: 1 / 3; }
+  .agenda-group-topics { grid-column: 1; padding: 10px; }
+  .agenda-topic-row { grid-template-columns: 16px minmax(0, 1fr) 58px; min-height: 82px; padding: 12px 10px; }
+  .agenda-topic-copy small { white-space: normal; }
+  .agenda-topic-status { display: none; }
   .department-directory-row { grid-template-columns: 32px minmax(0, 1fr) 52px; min-height: 104px; }
   .directory-scope { grid-column: 2; }
 }
@@ -2720,6 +2928,42 @@ function weeklyBriefingTable(plans, includeDepartment = true) {
   }).join('')}</tbody></table></div>`;
 }
 
+function weeklyAgendaDirectory(plans) {
+  if (!plans.length) return `<div class="empty-ledger"><strong>本期汇报安排尚未录入</strong><span>PMO 确认后，将在这里展示汇报顺序、部门、汇报人、事项、进度和协助部门。</span></div>`;
+  const groups = [];
+  plans.forEach((plan, index) => {
+    let group = groups.find(item => item.departmentId === plan[0]);
+    if (!group) {
+      group = { departmentId: plan[0], plans: [] };
+      groups.push(group);
+    }
+    group.plans.push({ plan, index });
+  });
+  return `<div class="agenda-directory-list">${groups.map((group, groupIndex) => {
+    const department = departments[group.departmentId];
+    const presenter = group.plans.find(item => item.plan[3] && item.plan[3] !== '待确认')?.plan[3] || '待确认';
+    return `<article class="agenda-department-group" style="--dept-color:${department.color}">
+      <div class="agenda-group-department">
+        <span class="agenda-group-index">${String(groupIndex + 1).padStart(2, '0')}</span>
+        <button type="button" class="agenda-department-button" data-jump-department="${group.departmentId}" aria-label="进入${department.label}部门页"><strong>${department.label}</strong><span>${department.purpose}</span></button>
+      </div>
+      <div class="agenda-group-presenter"><small>本周汇报人</small><strong>${presenter}</strong><span>建议角色：${department.owner}</span><b>本周 ${group.plans.length} 项</b></div>
+      <div class="agenda-group-topics">${group.plans.map(({ plan, index }) => {
+        const [title, output, , , progress, status, collaborators] = plan.slice(1, 8);
+        const progressText = Number.isFinite(progress) ? `${progress}%` : '—';
+        const collaborationText = collaborators && collaborators !== '待确认' ? collaborators : '—';
+        return `<button type="button" class="agenda-topic-row" data-plan-index="${index}" data-plan-source="agenda" aria-label="查看${title}详情">
+          <span class="agenda-topic-chevron">›</span>
+          <span class="agenda-topic-copy"><strong>${title}</strong><small>${output}</small></span>
+          <span class="agenda-topic-meta agenda-topic-progress"><small>当前进度</small><b>${progressText}</b></span>
+          <span class="agenda-topic-status">${statusTag(status)}</span>
+          <span class="agenda-topic-meta agenda-topic-collaboration"><small>协助部门</small><b>${collaborationText}</b></span>
+        </button>`;
+      }).join('')}</div>
+    </article>`;
+  }).join('')}</div>`;
+}
+
 function departmentPackages(id) {
   const department = departments[id];
   // 只展示已有工作包草案，不自动生成阶段任务、进度或跨部门包。
@@ -2864,20 +3108,21 @@ function renderOverview() {
   const period = currentReportingPeriod();
   const weeklyAgenda = currentWeeklyAgenda();
   const periodTitle = `第${period.reportWeek}周`;
-  const weeklyDepartmentNames = weeklyAgenda.map(plan => departments[plan[0]].label).join('、');
+  const weeklyDepartmentIds = [...new Set(weeklyAgenda.map(plan => plan[0]))];
+  const weeklyDepartmentNames = weeklyDepartmentIds.map(id => departments[id].label).join('、');
   const agendaSummary = weeklyAgenda.length
     ? `当前结构草案包含${weeklyDepartmentNames}；汇报名单、顺序和责任人待 PMO 确认。`
     : '本周汇报名单尚未录入，确认后将在下方生成汇报目录。';
   const executiveMetrics = [overallMetrics[0], overallMetrics[1], overallMetrics[3], overallMetrics[5]];
   return `<section class="overview-hero leadership-hero">
     <div class="week-identity"><small>汇报周次</small><strong>${periodTitle}</strong><span>${period.shortRange}</span></div>
-    <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>草案部门 <b>${weeklyAgenda.length}</b> 个</span><span>草案事项 <b>${weeklyAgenda.length}</b> 项</span><span>数据状态 <b>待确认</b></span></div></div>
+    <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>草案部门 <b>${weeklyDepartmentIds.length}</b> 个</span><span>草案事项 <b>${weeklyAgenda.length}</b> 项</span><span>数据状态 <b>待确认</b></span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>—</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">待 PMO 确认权重<br>和汇总口径</small></div>
   </section>
   <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
   <section class="panel weekly-briefing-panel">
     <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>按顺序说明谁来汇报、汇报什么、当前进度和协助部门。</p></div><div class="briefing-summary"><span>${weeklyAgenda.length ? '结构草案' : '尚未录入'}</span><span>待 PMO 确认</span></div></div>
-    ${weeklyBriefingTable(weeklyAgenda, true)}
+    ${weeklyAgendaDirectory(weeklyAgenda)}
   </section>
   ${renderDepartmentDirectory()}`;
 }
