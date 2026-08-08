@@ -2523,6 +2523,205 @@ button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,
   .weekly-report-table { min-width: 920px; }
 }
   </style>
+  <style id="fenfen-authoritative-home-v2">
+/*
+ * 最终视觉基准：芬芬姐《ALA公司品牌治理看板｜单文件版》
+ * 仅更新视觉，不改变首页已确认的“指标 → 汇报目录 → 本周汇报”结构。
+ */
+:root {
+  --navy: #12384d;
+  --navy-2: #0e2d3f;
+  --ink: #183043;
+  --muted: #6d7f8a;
+  --line: #dce5ea;
+  --soft: #f4f7f9;
+  --green: #2e9d63;
+  --yellow: #e8a522;
+  --red: #d84a45;
+  --blue: #2e72c9;
+  --shadow: 0 12px 32px rgba(18,56,77,.075);
+}
+
+html, body { background: var(--soft); color: var(--ink); }
+body { padding: 0; overflow-x: hidden; font-size: 13px; }
+button, select, input { border-radius: 0; }
+button:focus-visible, select:focus-visible { outline: 3px solid rgba(46,114,201,.28); outline-offset: 2px; }
+
+.demo-strip {
+  position: relative; inset: auto; z-index: 1; width: auto; height: 30px; padding: 0 20px;
+  background: #fff4d9; border: 0; color: #8a5d00; font-size: 12px; font-weight: 700;
+}
+.app-header {
+  position: static; z-index: auto; width: auto; height: 92px; margin: 0; padding: 0 44px;
+  background: #fff; border: 0; border-bottom: 1px solid var(--line); box-shadow: none; backdrop-filter: none;
+}
+.brand-block { gap: 15px; }
+.app-logo { width: 52px; height: 52px; border-radius: 13px; box-shadow: 0 5px 14px rgba(47,74,255,.18); }
+.brand-copy { min-width: 330px; }
+.brand-block h1 { color: var(--ink); font-size: 27px; line-height: 1.1; font-weight: 700; letter-spacing: 0; }
+.brand-period { margin-top: 7px; gap: 7px; color: var(--muted); font-size: 12px; }
+.brand-period strong { color: var(--ink); font-size: 12px; font-weight: 700; }
+.header-actions { position: static; width: auto; height: auto; margin-left: auto; padding: 0; align-items: flex-end; gap: 14px; background: transparent; border: 0; box-shadow: none; }
+.period-selector { width: auto; min-width: 300px; gap: 4px; }
+.period-selector small { display: block; color: var(--muted); font-size: 11px; }
+.period-selector select { height: 44px; padding: 0 34px 0 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 12px; font-weight: 700; }
+.outline-button { position: static; width: auto; height: 44px; padding: 0 18px; border: 1px solid var(--navy); background: #fff; color: var(--navy); font-size: 12px; font-weight: 800; box-shadow: none; }
+.outline-button:hover { background: var(--soft); }
+
+.department-tabs {
+  position: sticky; inset: auto; top: 0; z-index: 10; width: auto; height: auto; padding: 0 44px;
+  flex-direction: row; align-items: stretch; gap: 0; overflow-x: auto; overflow-y: hidden;
+  background: #fff; border: 0; border-bottom: 1px solid var(--line); box-shadow: 0 4px 15px rgba(18,56,77,.035); backdrop-filter: none;
+}
+.department-tab {
+  display: block; flex: 0 0 auto; width: auto; min-width: 120px; height: auto; padding: 17px 15px 14px;
+  border: 0; border-bottom: 4px solid transparent; background: transparent; color: var(--muted);
+  font-size: 13px; font-weight: 700; text-align: center;
+}
+.department-tab:hover { color: var(--ink); background: var(--soft); }
+.department-tab.active { color: var(--tab-color); border-bottom-color: var(--tab-color); background: color-mix(in srgb, var(--tab-color) 6%, white); box-shadow: none; }
+
+#dashboardRoot { width: auto; max-width: 1800px; min-height: auto; margin: 0 auto; padding: 26px 44px 60px; background: transparent; border: 0; }
+.section-label { margin: 0 0 5px; color: var(--blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+.section-title { margin: 0; color: var(--ink); font-size: 21px; font-weight: 700; letter-spacing: 0; }
+.section-note { color: var(--muted); font-size: 13px; line-height: 1.45; }
+.section-head { margin-bottom: 13px; align-items: end; }
+.panel { overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 0; box-shadow: 0 5px 18px rgba(18,56,77,.035); }
+.panel-head { min-height: 66px; padding: 15px 20px; border-bottom: 1px solid var(--line); }
+.panel-head h2, .report-directory-panel .panel-head h2, .weekly-report-panel .panel-head h2 { margin: 0; color: var(--ink); font-size: 19px; font-weight: 700; }
+.panel-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+.overview-hero.leadership-hero {
+  display: grid; grid-template-columns: 260px minmax(0, 1fr); grid-template-areas: "score message";
+  min-height: 164px; overflow: hidden; background: var(--navy); color: #fff;
+  border: 0; border-radius: 0; box-shadow: var(--shadow);
+}
+.leadership-hero .overall-score {
+  grid-area: score; min-height: 164px; padding: 24px; align-items: center; justify-content: center;
+  background: transparent; border: 0; border-right: 1px solid rgba(255,255,255,.17); color: #fff;
+}
+.leadership-hero .overall-score small { color: #b9cbd5; font-size: 12px; font-weight: 500; }
+.leadership-hero .overall-score strong { margin: 6px 0; color: #fff; font-size: 47px; line-height: 1; letter-spacing: -1px; }
+.leadership-hero .overall-score span { padding: 0; background: transparent; color: #ffd37b; font-size: 12px; font-weight: 800; }
+.leadership-hero .overall-score .score-method { margin-top: 8px; color: #9fb7c4; font-size: 11px; font-weight: 500; line-height: 1.45; text-align: center; }
+.leadership-hero .hero-message { grid-area: message; display: flex; padding: 25px 34px; justify-content: center; flex-direction: column; border: 0; }
+.hero-title-group { display: flex; margin-bottom: 13px; align-items: center; gap: 15px; }
+.hero-week-tag {
+  display: inline-grid; min-width: 72px; min-height: 46px; padding: 0 12px; flex: 0 0 auto; place-items: center;
+  border: 1px solid rgba(255,255,255,.68); background: #fff; color: var(--navy);
+  font-size: 15px; font-weight: 900; letter-spacing: .2px;
+}
+.leadership-hero .hero-title-copy h2 { margin: 0 0 5px; color: #fff; font-size: 27px; line-height: 1.25; font-weight: 800; }
+.hero-title-copy span { color: #b9cbd5; font-size: 12px; font-weight: 600; }
+.leadership-hero .hero-brief-lines { display: grid; gap: 5px; }
+.leadership-hero .hero-brief-lines p { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; margin: 0; }
+.leadership-hero .hero-brief-lines strong { color: #8ed0f2; font-size: 12px; font-weight: 800; }
+.leadership-hero .hero-brief-lines span { color: #d2e1e9; font-size: 13px; line-height: 1.5; }
+.report-meta { display: flex; margin-top: 14px; flex-wrap: wrap; gap: 0; }
+.report-meta span { display: inline-flex; min-height: auto; padding: 0 12px; align-items: center; border: 0; border-right: 1px solid #9fb7c4; background: transparent; color: #9fb7c4; font-size: 11px; font-weight: 600; }
+.report-meta span:first-child { padding-left: 0; }
+.report-meta span:last-child { border-right: 0; }
+
+.metric-section { margin-top: 24px; }
+.compact-metric-section .section-head { min-height: auto; margin-bottom: 13px; }
+.compact-metric-section .section-title { font-size: 21px; }
+.compact-metric-section .section-note { max-width: 720px; text-align: right; }
+.metric-grid { grid-template-columns: repeat(var(--metric-columns, 4), minmax(0, 1fr)) !important; gap: 12px; }
+.metric-card, .compact-metric-section .metric-card {
+  min-height: 154px; padding: 16px 17px 14px; overflow: hidden;
+  background: #fff; border: 1px solid #e4ebef; border-top: 4px solid var(--metric-color);
+  border-radius: 0; box-shadow: 0 5px 16px rgba(18,56,77,.04);
+}
+.metric-card h3 { color: var(--ink); font-size: 14px; line-height: 1.4; }
+.metric-card .owner { padding: 3px 7px; border-radius: 0; font-size: 11px; }
+.metric-values, .compact-metric-section .metric-values { margin: 11px 0 9px; }
+.metric-values small { color: var(--muted); font-size: 11px; }
+.metric-values strong, .compact-metric-section .metric-values strong { color: var(--ink); font-size: 18px; }
+.achievement-line, .mini-progress { border-radius: 0; }
+.metric-foot { color: var(--muted); font-size: 12px; }
+
+.report-directory-panel, .weekly-report-panel { margin-top: 24px; }
+.report-directory-panel .panel-head, .weekly-report-panel .panel-head { min-height: 66px; padding: 15px 20px; }
+.briefing-summary { display: flex; gap: 6px; }
+.briefing-summary span { padding: 5px 8px; border: 1px solid var(--line); border-radius: 0; background: #f5f9fb; color: var(--navy); font-size: 12px; font-weight: 800; }
+.briefing-summary span:last-child { border-color: #efd79f; background: #fff8e7; color: #8a5d00; }
+
+.report-directory-head, .report-directory-row { grid-template-columns: 110px minmax(220px, 1fr) 220px 150px; }
+.report-directory-head {
+  min-height: 43px; border: 0; background: var(--navy); color: #fff;
+  font-size: 12px; font-weight: 800;
+}
+.report-directory-head span { padding: 0 18px; border-right: 1px solid rgba(255,255,255,.14); }
+.report-directory-row { min-height: 72px; border-bottom: 1px solid var(--line); background: #fff; }
+.report-directory-row:hover { background: #f8fafb; }
+.report-directory-order { width: 34px; height: 34px; margin-left: 18px; background: var(--dept-color); color: #fff; font-size: 12px; }
+.report-directory-department { padding-left: 30px !important; }
+.report-directory-department i { left: 18px; width: 8px; height: 25px; }
+.report-directory-department strong { font-size: 14px; }
+.report-directory-presenter strong, .report-directory-count strong { font-size: 13px; }
+.report-directory-department small, .report-directory-presenter small, .report-directory-count small { color: var(--muted); font-size: 12px; }
+.report-directory-department small { color: var(--dept-color); }
+
+.weekly-report-scroll { width: 100%; overflow-x: auto; }
+.weekly-report-table { width: 100%; min-width: 920px; border-collapse: collapse; table-layout: fixed; }
+.weekly-report-table th { padding: 12px 14px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; line-height: 1.4; text-align: left; }
+.weekly-report-table td { padding: 14px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 13px; line-height: 1.45; vertical-align: middle; }
+.weekly-report-table tbody tr:hover { background: #f8fafb; }
+.weekly-report-table .work-title { color: var(--ink); font-size: 14px; font-weight: 800; }
+.weekly-report-table .work-output { color: var(--muted); font-size: 12px; }
+.weekly-report-table .department-jump i { width: 8px; height: 25px; background: var(--dept-color); }
+.weekly-report-table .department-jump strong, .weekly-report-table .agenda-owner, .weekly-report-table .agenda-collaboration { font-size: 13px; }
+.pending-value { min-height: 28px; padding: 0 9px; border: 1px solid var(--line); background: #f7f9fa; color: var(--muted); font-size: 11px; font-weight: 800; }
+
+@media (max-width: 1350px) {
+  .app-header { height: auto; min-height: 92px; padding: 12px 24px; flex-wrap: wrap; gap: 12px; }
+  .department-tabs { padding-inline: 24px; }
+  #dashboardRoot { padding-inline: 24px; }
+  .brand-copy { min-width: 260px; }
+  .period-selector { min-width: 260px; }
+  .header-actions { flex-wrap: wrap; justify-content: flex-end; }
+}
+@media (max-width: 1100px) {
+  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .report-directory-head, .report-directory-row { grid-template-columns: 90px minmax(170px, 1fr) 180px 120px; }
+}
+@media (max-width: 900px) {
+  .overview-hero.leadership-hero { grid-template-columns: 1fr; grid-template-areas: "score" "message"; }
+  .leadership-hero .overall-score { min-height: 118px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+  .leadership-hero .hero-message { padding: 22px 24px; }
+  .report-directory-head, .report-directory-row { grid-template-columns: 82px minmax(160px, 1fr) 160px 110px; }
+}
+@media (max-width: 700px) {
+  .demo-strip { min-height: 30px; height: auto; padding: 7px 12px; line-height: 1.35; text-align: center; }
+  .app-header { position: relative; padding: 14px 18px; }
+  .brand-copy { min-width: 0; }
+  .brand-block h1 { font-size: 19px; }
+  .app-logo { width: 42px; height: 42px; }
+  .header-actions { width: 100%; flex-wrap: nowrap; }
+  .period-selector { width: 0; min-width: 0; flex: 1 1 0; overflow: hidden; }
+  .app-header > .header-actions > .outline-button { display: none; }
+  .department-tabs { top: 0; padding-inline: 16px; }
+  .department-tab { min-width: 96px; padding-inline: 12px; font-size: 12px; }
+  #dashboardRoot { padding: 20px 18px 48px; }
+  .leadership-hero .hero-message { padding: 22px 20px; }
+  .leadership-hero .hero-title-copy h2 { font-size: 23px; }
+  .hero-week-tag { min-width: 62px; min-height: 43px; font-size: 13px; }
+  .leadership-hero .hero-brief-lines p { grid-template-columns: 1fr; gap: 1px; }
+  .metric-grid { grid-template-columns: 1fr !important; }
+  .section-head { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .compact-metric-section .section-note { text-align: left; }
+  .panel-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .briefing-summary { flex-wrap: wrap; }
+  .report-directory-head { display: none; }
+  .report-directory-row { grid-template-columns: 58px minmax(0, 1fr) 82px; min-height: 98px; }
+  .report-directory-order { width: 34px; height: 34px; margin-left: 12px; }
+  .report-directory-department { padding: 14px 12px 7px 24px !important; }
+  .report-directory-department i { left: 12px; }
+  .report-directory-presenter { grid-column: 2; padding: 4px 12px 14px !important; flex-direction: row; gap: 8px; justify-content: flex-start; }
+  .report-directory-presenter small { margin: 0; }
+  .report-directory-count { grid-column: 3; grid-row: 1 / 3; padding-inline: 10px !important; align-items: flex-end; text-align: right; }
+}
+  </style>
 </head>
 <body>
   <!--
@@ -3161,11 +3360,14 @@ function renderOverview() {
     : '本周汇报名单尚未录入，确认后将在下方生成汇报目录。';
   const executiveMetrics = [overallMetrics[0], overallMetrics[1], overallMetrics[3], overallMetrics[5]];
   return `<section class="overview-hero leadership-hero">
-    <div class="week-identity"><small>汇报周次</small><strong>${periodTitle}</strong><span>${period.shortRange}</span></div>
-    <div class="hero-message"><p class="hero-eyebrow">品牌治理周度汇报</p><h2>本周汇报安排</h2><p class="hero-report-summary">${agendaSummary}</p><div class="hero-directory-facts"><span>汇报部门 <b>${weeklyDepartmentIds.length}</b> 个</span><span>汇报事项 <b>${weeklyAgenda.length}</b> 项</span><span>名单状态 <b>待确认</b></span></div></div>
     <div class="overall-score"><small>整体完成进度</small><strong>—</strong><span>管理状态 · ${pmWeeklyBrief.status}</span><small class="score-method">待 PMO 确认权重<br>和汇总口径</small></div>
+    <div class="hero-message">
+      <div class="hero-title-group"><span class="hero-week-tag">${periodTitle}</span><div class="hero-title-copy"><h2>本周汇报安排</h2><span>${period.shortRange}</span></div></div>
+      <div class="hero-brief-lines"><p><strong>汇报目录</strong><span>${agendaSummary}</span></p><p><strong>数据口径</strong><span>完成进度、汇报人和协助部门待各部门及 PMO 确认</span></p></div>
+      <div class="report-meta"><span>汇报部门 ${weeklyDepartmentIds.length} 个</span><span>汇报事项 ${weeklyAgenda.length} 项</span><span>名单状态 待确认</span></div>
+    </div>
   </section>
-  <section class="metric-section compact-metric-section"><div class="section-head"><h2 class="section-title">本周重点指标</h2><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
+  <section class="metric-section compact-metric-section"><div class="section-head"><div><p class="section-label">WEEKLY METRICS</p><h2 class="section-title">本周重点指标</h2></div><p class="section-note">只接入经部门和 PMO 核实的目标值、当前值与周变化</p></div><div class="metric-grid" style="--metric-columns:${executiveMetrics.length}">${metricCards(executiveMetrics)}</div></section>
   <section class="panel report-directory-panel">
     <div class="panel-head"><div><h2>${periodTitle}汇报目录</h2><p>按汇报顺序列示部门与汇报人；具体汇报内容见下方“本周汇报”。</p></div><div class="briefing-summary"><span>${weeklyDepartmentIds.length ? `${weeklyDepartmentIds.length}个部门` : '尚未录入'}</span><span>名单待确认</span></div></div>
     ${weeklyAgendaDirectory(weeklyAgenda)}
